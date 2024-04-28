@@ -1,7 +1,45 @@
 import 'package:flutter/material.dart';
 
-class FeedBacks extends StatelessWidget {
+class FeedBacks extends StatefulWidget {
   const FeedBacks({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _FeedBacksState createState() => _FeedBacksState();
+}
+
+class _FeedBacksState extends State<FeedBacks> {
+  int selectedIndex = -1;
+
+  void handleCheckItemSelection(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
+  Widget buildCheckItem(String title, int index) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15.0),
+      child: Row(
+        children: [
+          Radio<int>(
+            value: index,
+            groupValue: selectedIndex,
+            onChanged: (value) => handleCheckItemSelection(value!),
+            activeColor: const Color(0xFF16764B),
+          ),
+          const SizedBox(width: 10.0),
+          Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +48,7 @@ class FeedBacks extends StatelessWidget {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.green, Color.fromARGB(255, 243, 175, 48)],
+              colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -42,45 +80,29 @@ class FeedBacks extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 8.0),
-                const Text("Feedbacks and Suggestions",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20)),
+                const Text(
+                  "Feedbacks and Suggestions",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
                 const SizedBox(height: 8.0),
                 const Text(
                   "Please Select the type of feedback",
                   style: TextStyle(color: Color(0xffc5c5c5)),
                 ),
-                const SizedBox(height: 18.0),
-                buildCheckItem("Crops Selection"),
-                buildCheckItem("Price Rates"),
-                buildCheckItem("Performances of the Application"),
                 const SizedBox(height: 10.0),
-                buildFeedbackForm(),
+                buildCheckItem("Crops Selection", 0),
+                buildCheckItem("Price Rates", 1),
+                buildCheckItem("Performances of the Application", 2),
+                const SizedBox(height: 10.0),
+                selectedIndex != -1 ? buildFeedbackForm() : Container(),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget buildCheckItem(String title) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 15.0),
-      child: Row(
-        children: [
-          const Icon(Icons.check_circle, color: Colors.blue),
-          const SizedBox(width: 10.0),
-          Text(
-            title,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 0, 0, 0),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -102,7 +124,15 @@ class FeedBacks extends StatelessWidget {
           const SizedBox(height: 8.0),
           TextFormField(
             decoration: const InputDecoration(
-              hintText: 'Enter your Name & feedback here',
+              hintText: 'Enter your Name here',
+              border: OutlineInputBorder(),
+            ),
+            maxLines: 1,
+          ),
+          const SizedBox(height: 8.0),
+          TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter your feedback here',
               border: OutlineInputBorder(),
             ),
             maxLines: 3,
