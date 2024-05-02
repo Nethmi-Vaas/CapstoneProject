@@ -32,6 +32,8 @@ class dashBoard extends StatelessWidget {
           ),
         ),
         body: Container(
+            width: 600,
+            height: 600,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
