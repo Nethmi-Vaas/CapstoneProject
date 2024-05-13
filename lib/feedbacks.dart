@@ -1,20 +1,78 @@
+
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FeedBacks extends StatefulWidget {
-  const FeedBacks({super.key});
+  const FeedBacks({Key? key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _FeedBacksState createState() => _FeedBacksState();
 }
 
 class _FeedBacksState extends State<FeedBacks> {
   int selectedIndex = -1;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController feedbackController = TextEditingController();
+  bool isSubmitting = false;
 
   void handleCheckItemSelection(int index) {
     setState(() {
       selectedIndex = index;
     });
+  }
+
+  Future<void> submitFeedback() async {
+    if (nameController.text.isEmpty || feedbackController.text.isEmpty) {
+      // Handle input validation
+      return;
+    }
+    setState(() {
+      isSubmitting = true;
+    });
+
+    try {
+      // Initialize Firebase if not already initialized
+      await Firebase.initializeApp();
+      // Add feedback to Firestore
+      await FirebaseFirestore.instance.collection('feedbacks').add({
+        'name': nameController.text,
+        'feedback': feedbackController.text,
+        'type': selectedIndex == 0
+            ? 'Crops Selection'
+            : selectedIndex == 1
+                ? 'Price Rates'
+                : 'Performances of the Application',
+        'timestamp': DateTime.now(),
+      });
+      // Reset form
+      nameController.clear();
+      feedbackController.clear();
+      setState(() {
+        selectedIndex = -1;
+        isSubmitting = false;
+      });
+      // Show confirmation dialog
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text('Feedback Submitted'),
+          content: const Text('Thank you for your feedback!'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      // Handle errors
+      print('Error submitting feedback: $e');
+      setState(() {
+        isSubmitting = false;
+      });
+    }
   }
 
   Widget buildCheckItem(String title, int index) {
@@ -68,12 +126,6 @@ class _FeedBacksState extends State<FeedBacks> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(''),
-              fit: BoxFit.cover,
-            ),
-          ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -123,6 +175,7 @@ class _FeedBacksState extends State<FeedBacks> {
           ),
           const SizedBox(height: 8.0),
           TextFormField(
+            controller: nameController,
             decoration: const InputDecoration(
               hintText: 'Enter your Name here',
               border: OutlineInputBorder(),
@@ -131,6 +184,7 @@ class _FeedBacksState extends State<FeedBacks> {
           ),
           const SizedBox(height: 8.0),
           TextFormField(
+            controller: feedbackController,
             decoration: const InputDecoration(
               hintText: 'Enter your feedback here',
               border: OutlineInputBorder(),
@@ -139,7 +193,7 @@ class _FeedBacksState extends State<FeedBacks> {
           ),
           const SizedBox(height: 8.0),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: isSubmitting ? null : submitFeedback,
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
@@ -159,18 +213,22 @@ class _FeedBacksState extends State<FeedBacks> {
                   end: Alignment.centerRight,
                 ),
               ),
-              child: const Center(
+              child: Center(
                 child: Padding(
                   padding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                      const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                  child: isSubmitting
+                      ? const CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        )
+                      : const Text(
+                          'Submit',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ),
               ),
             ),
