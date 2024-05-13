@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "538784837581",
+    "firebase_url": "https://capstone-53c84-default-rtdb.firebaseio.com",
+    "project_id": "capstone-53c84",
+    "storage_bucket": "capstone-53c84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538784837581:android:949f7b8df9b58f299f1e84",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO3a__olfiwXxT_oMDX3BhwGkvmIfl1zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

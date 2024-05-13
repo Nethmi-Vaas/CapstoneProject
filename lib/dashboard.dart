@@ -37,7 +37,7 @@ class dashBoard extends StatelessWidget {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                    'assets/img_removal_9.png'), 
+                    'assets/bg.jpg'), 
                 fit: BoxFit.cover, 
               ),
             ),
