@@ -33,7 +33,7 @@ class dashBoard extends StatelessWidget {
         ),
         body: Container(
             width: 600,
-            height: 600,
+            height: MediaQuery.of(context).size.height, // This is New Chanege
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(

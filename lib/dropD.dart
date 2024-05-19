@@ -124,7 +124,7 @@ class _DropDownState extends State<DropDown> {
             for (var month in selectMonth) {
               monthItems.add(
                 DropdownMenuItem(
-                  value: month.id,
+                  value: month['M_id'],
                   child: Text(
                     month['name'],
                   ),
@@ -180,7 +180,7 @@ class _DropDownState extends State<DropDown> {
             for (var district in selectDistrict) {
               districtItems.add(
                 DropdownMenuItem(
-                  value: district.id,
+                  value: district['D_id'],
                   child: Text(
                     district['D_name'],
                   ),
@@ -209,6 +209,7 @@ class _DropDownState extends State<DropDown> {
                   setState(() {
                     selectedDistrict = value;
                     showAreaDropdown = true;
+
                   });
                 },
               ),
@@ -221,7 +222,7 @@ class _DropDownState extends State<DropDown> {
 
   Widget _buildAreaDropdown() {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection("Area").snapshots(),
+      stream: FirebaseFirestore.instance.collection("Area").where("D_id",isEqualTo: selectedDistrict).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -237,7 +238,7 @@ class _DropDownState extends State<DropDown> {
             for (var area in selectArea) {
               areaItems.add(
                 DropdownMenuItem(
-                  value: area.id,
+                  value: area['A_id'],
                   child: Text(
                     area['A_name'],
                   ),
@@ -278,7 +279,7 @@ class _DropDownState extends State<DropDown> {
 
   Widget _buildCropTypeDropdown() {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection("Crop_Type").snapshots(),
+      stream: FirebaseFirestore.instance.collection("Area_crop_month").where("M_id",isEqualTo: selectedMonth).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -290,42 +291,59 @@ class _DropDownState extends State<DropDown> {
           return const CircularProgressIndicator();
         } else {
           final selectCropTypes = snapshot.data?.docs;
-          if (selectCropTypes != null) {
-            for (var cropType in selectCropTypes) {
-              cropTypeItems.add(
-                DropdownMenuItem(
-                  value: cropType.id,
-                  child: Text(
-                    cropType['CT_name'],
+
+          return StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance.collection("Area_crop_month").where("A_id",isEqualTo: selectedArea).snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text("Some error occurred ${snapshot.error}"),
+                );
+              }
+              List<DropdownMenuItem<String>> cropTypeItems = [];
+              if (!snapshot.hasData) {
+                return const CircularProgressIndicator();
+              } else {
+                final selectCropTypes = snapshot.data?.docs;
+                if (selectCropTypes != null) {
+                  for (var cropType in selectCropTypes) {
+                    cropTypeItems.add(
+                      DropdownMenuItem(
+                        value:  cropType['C_id'],
+                        child: Text(
+                          cropType['C_id'],
+                        ),
+                      ),
+                    );
+                  }
+                }
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 1),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: DropdownButton<String>(
+                      underline: const SizedBox(),
+                      isExpanded: true,
+                      hint: const Text(
+                        "Select the Crop Type",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      value: selectedCropType,
+                      items: cropTypeItems,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedCropType = value;
+                        });
+                      },
+                    ),
                   ),
-                ),
-              );
-            }
-          }
-          return Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey, width: 1),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: DropdownButton<String>(
-                underline: const SizedBox(),
-                isExpanded: true,
-                hint: const Text(
-                  "Select the Crop Type",
-                  style: TextStyle(fontSize: 20),
-                ),
-                value: selectedCropType,
-                items: cropTypeItems,
-                onChanged: (value) {
-                  setState(() {
-                    selectedCropType = value;
-                  });
-                },
-              ),
-            ),
+                );
+              }
+            },
           );
         }
       },
