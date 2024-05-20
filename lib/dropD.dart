@@ -309,9 +309,9 @@ class _DropDownState extends State<DropDown> {
                   for (var cropType in selectCropTypes) {
                     cropTypeItems.add(
                       DropdownMenuItem(
-                        value:  cropType['C_id'],
+                        value:  cropType['C_name']??"",
                         child: Text(
-                          cropType['C_id'],
+                          cropType['C_name']??"",
                         ),
                       ),
                     );
