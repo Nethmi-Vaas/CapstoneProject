@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ViewPage extends StatefulWidget {
-  const ViewPage({super.key, required this.selectedMonth, required this.selectedDistrict, required this.selectedArea, required this.selectedCroptype});
+  const ViewPage({
+    super.key,
+    required this.selectedMonth,
+    required this.selectedDistrict,
+    required this.selectedArea,
+    required this.selectedCroptype,
+  });
+
   final String selectedMonth;
   final String selectedDistrict;
   final String selectedArea;
@@ -48,129 +55,72 @@ class _ViewPageState extends State<ViewPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height / 8 * 7,
-              child: StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collection("Area_crop_month").where("M_id", isEqualTo: selectedMonth).snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Center(
-                      child: Text("Some error occurred ${snapshot.error}"),
-                    );
-                  }
-                  if (!snapshot.hasData) {
-                    return Container(
-                      height: 25,
-                      width: 25,
-                      child: Center(
-                        child: const CircularProgressIndicator(),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection("Area_crop_month")
+              .where("M_id", isEqualTo: selectedMonth)
+              .where("A_id", isEqualTo: selectedArea)
+              .where("CT_id", isEqualTo: selectedCroptype)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text("Some error occurred ${snapshot.error}"),
+              );
+            }
+            if (!snapshot.hasData) {
+              return Container(
+                height: 25,
+                width: 25,
+                child: Center(
+                  child: const CircularProgressIndicator(),
+                ),
+              );
+            } else {
+              final selectCropTypes = snapshot.data?.docs ?? [];
+              List<CropType> cropTypeItems = selectCropTypes.map((cropType) {
+                return CropType(
+                  name: cropType['C_name'] ?? "",
+                  percentage: cropType['Percentage'] ?? 0,
+                );
+              }).toList();
+
+              return ListView.builder(
+                padding: const EdgeInsets.all(10.0),
+                itemCount: cropTypeItems.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      color: Colors.white,
+                      child: ListTile(
+                        title: Text(cropTypeItems[index].name),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            LinearPercentIndicator(
+                              width: 140.0,
+                              lineHeight: 14.0,
+                              percent: cropTypeItems[index].percentage / 100,
+                              backgroundColor: Colors.grey,
+                              progressColor: Colors.blue,
+                            ),
+                            Text("Percentage: ${cropTypeItems[index].percentage}%"),
+                          ],
+                        ),
+                        onTap: () {
+                          setState(() {
+                            selectedCrop = cropTypeItems[index].name;
+                          });
+                        },
                       ),
-                    );
-                  } else {
-                    final selectCropTypes = snapshot.data?.docs;
-                    List<CropType> cropTypeItems = [];
-                    if (selectCropTypes != null) {
-                      for (var cropType in selectCropTypes) {
-                        cropTypeItems.add(CropType(
-                          name: "",
-                          percentage: 0,
-                        ));
-                      }
-                    }
-
-                    return StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance.collection("Area_crop_month").where("A_id", isEqualTo: selectedArea).snapshots(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          return Center(
-                            child: Text("Some error occurred ${snapshot.error}"),
-                          );
-                        }
-                        if (!snapshot.hasData) {
-                          return const CircularProgressIndicator();
-                        } else {
-                          final selectCropTypes = snapshot.data?.docs;
-                          List<CropType> cropTypeItems = [];
-                          if (selectCropTypes != null) {
-                            for (var cropType in selectCropTypes) {
-                              cropTypeItems.add(CropType(
-                                name:  "",
-                                percentage:  0,
-                              ));
-                            }
-                          }
-
-                          return StreamBuilder<QuerySnapshot>(
-                            stream: FirebaseFirestore.instance.collection("Area_crop_month").where("CT_id", isEqualTo: selectedCroptype).snapshots(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasError) {
-                                return Center(
-                                  child: Text("Some error occurred ${snapshot.error}"),
-                                );
-                              }
-                              if (!snapshot.hasData) {
-                                return const CircularProgressIndicator();
-                              } else {
-                                final selectCropTypes = snapshot.data?.docs;
-                                List<CropType> cropTypeItems = [];
-                                if (selectCropTypes != null) {
-                                  for (var cropType in selectCropTypes) {
-                                    cropTypeItems.add(CropType(
-                                      name: cropType['C_name'] ?? "",
-                                      percentage: cropType['Percentage'] ?? 0,
-                                    ));
-                                  }
-                                }
-
-                                return ListView.builder(
-                                  padding: const EdgeInsets.all(10.0),
-                                  itemCount: cropTypeItems.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        height: 100,
-                                        color: Colors.white,
-                                        child: ListTile(
-                                          title: Text(cropTypeItems[index].name),
-                                          subtitle: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              LinearPercentIndicator(
-                                                width: 140.0,
-                                                lineHeight: 14.0,
-                                                percent: cropTypeItems[index].percentage / 100,
-                                                backgroundColor: Colors.grey,
-                                                progressColor: Colors.blue,
-                                              ),
-                                              Text("Percentage: ${cropTypeItems[index].percentage}%"),
-                                            ],
-                                          ),
-                                          onTap: () {
-                                            setState(() {
-                                              selectedCrop = cropTypeItems[index].name;
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              }
-                            },
-                          );
-                        }
-                      },
-                    );
-                  }
+                    ),
+                  );
                 },
-              ),
-            )
-          ],
+              );
+            }
+          },
         ),
       ),
     );
@@ -183,4 +133,3 @@ class CropType {
 
   CropType({required this.name, required this.percentage});
 }
-
