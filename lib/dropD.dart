@@ -12,9 +12,11 @@ class _DropDownState extends State<DropDown> {
   String? selectedMonth;
   String? selectedDistrict;
   String? selectedArea;
-  String? selectedCropType;
+  String? selectedCroptype;
+  String? selectedCrop;
 
   bool showAreaDropdown = false;
+  bool showCropDropdown = false;
   bool showCropTypeDropdown = false;
 
   List<String> fetchedData = [];
@@ -54,6 +56,8 @@ class _DropDownState extends State<DropDown> {
           const SizedBox(height: 20),
           if (showAreaDropdown) _buildAreaDropdown(),
           const SizedBox(height: 20),
+          if (showCropDropdown) _buildselectcroptypeDropdown(),
+          const SizedBox(height: 20),
           if (showCropTypeDropdown) _buildCropTypeDropdown(),
           const SizedBox(height: 40),
           ElevatedButton(
@@ -61,9 +65,9 @@ class _DropDownState extends State<DropDown> {
               if (selectedMonth != null &&
                   selectedDistrict != null &&
                   selectedArea != null &&
-                  selectedCropType != null) {
+                  selectedCrop != null &&  selectedCroptype != null) {
                 fetchDataFromFirestore(selectedMonth!, selectedDistrict!,
-                    selectedArea!, selectedCropType!);
+                    selectedArea!, selectedCrop!);
               } else {
                 print('Please select all options');
               }
@@ -266,6 +270,62 @@ class _DropDownState extends State<DropDown> {
                 onChanged: (value) {
                   setState(() {
                     selectedArea = value;
+                    showCropDropdown = true;
+                  });
+                },
+              ),
+            ),
+          );
+        }
+      },
+    );
+  }
+  Widget _buildselectcroptypeDropdown() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection("Crop_Type").snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Center(
+            child: Text("Some error occurred ${snapshot.error}"),
+          );
+        }
+        List<DropdownMenuItem<String>> areaItems = [];
+        if (!snapshot.hasData) {
+          return const CircularProgressIndicator();
+        } else {
+          final selectcroptype = snapshot.data?.docs;
+          if (selectcroptype != null) {
+            for (var area in selectcroptype) {
+              areaItems.add(
+                DropdownMenuItem(
+                  value: area['CT_id'],
+                  child: Text(
+                    area['CT_name'],
+                  ),
+                ),
+              );
+            }
+          }
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 1),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: DropdownButton<String>(
+                underline: const SizedBox(),
+                isExpanded: true,
+                hint: const Text(
+                  "Select the Crop",
+                  style: TextStyle(fontSize: 20),
+                ),
+                value: selectedCroptype,
+                items: areaItems,
+                onChanged: (value) {
+                  setState(() {
+                    selectedCroptype = value;
                     showCropTypeDropdown = true;
                   });
                 },
@@ -276,6 +336,7 @@ class _DropDownState extends State<DropDown> {
       },
     );
   }
+
 
   Widget _buildCropTypeDropdown() {
     return StreamBuilder<QuerySnapshot>(
@@ -288,9 +349,27 @@ class _DropDownState extends State<DropDown> {
         }
         List<DropdownMenuItem<String>> cropTypeItems = [];
         if (!snapshot.hasData) {
-          return const CircularProgressIndicator();
+          return Container(
+            height: 25,
+            width: 25,
+            child: Center(
+
+                child: const CircularProgressIndicator()),
+          );
         } else {
           final selectCropTypes = snapshot.data?.docs;
+          if (selectCropTypes != null) {
+            for (var cropType in selectCropTypes) {
+              cropTypeItems.add(
+                DropdownMenuItem(
+                  value:  cropType['C_name']??"",
+                  child: Text(
+                    cropType['C_name']??"",
+                  ),
+                ),
+              );
+            }
+          }
 
           return StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance.collection("Area_crop_month").where("A_id",isEqualTo: selectedArea).snapshots(),
@@ -317,30 +396,58 @@ class _DropDownState extends State<DropDown> {
                     );
                   }
                 }
-                return Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: DropdownButton<String>(
-                      underline: const SizedBox(),
-                      isExpanded: true,
-                      hint: const Text(
-                        "Select the Crop Type",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      value: selectedCropType,
-                      items: cropTypeItems,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedCropType = value;
-                        });
-                      },
-                    ),
-                  ),
+                return StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance.collection("Area_crop_month").where("CT_id",isEqualTo: selectedCroptype).snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text("Some error occurred ${snapshot.error}"),
+                      );
+                    }
+                    List<DropdownMenuItem<String>> cropTypeItems = [];
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator();
+                    } else {
+                      final selectCropTypes = snapshot.data?.docs;
+                      if (selectCropTypes != null) {
+                        for (var cropType in selectCropTypes) {
+                          cropTypeItems.add(
+                            DropdownMenuItem(
+                              value:  cropType['C_name']??"",
+                              child: Text(
+                                cropType['C_name']??"",
+                              ),
+                            ),
+                          );
+                        }
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey, width: 1),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: DropdownButton<String>(
+                            underline: const SizedBox(),
+                            isExpanded: true,
+                            hint: const Text(
+                              "Select the Crop Type",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            value: selectedCrop,
+                            items: cropTypeItems,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedCrop = value;
+                              });
+                            },
+                          ),
+                        ),
+                      );
+                    }
+                  },
                 );
               }
             },
