@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/viewpage.dart';
 
 class DropDown extends StatefulWidget {
   const DropDown({Key? key}) : super(key: key);
@@ -65,9 +66,16 @@ class _DropDownState extends State<DropDown> {
               if (selectedMonth != null &&
                   selectedDistrict != null &&
                   selectedArea != null &&
-                  selectedCrop != null &&  selectedCroptype != null) {
-                fetchDataFromFirestore(selectedMonth!, selectedDistrict!,
-                    selectedArea!, selectedCrop!);
+                   selectedCroptype != null) {
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewPage(selectedMonth: '$selectedMonth', selectedDistrict: '$selectedDistrict', selectedArea: '$selectedArea', selectedCroptype: '$selectedCroptype',)),
+                );
+
+
+               // fetchDataFromFirestore(selectedMonth!, selectedDistrict!,
+                 //   selectedArea!, selectedCroptype!);
               } else {
                 print('Please select all options');
               }
