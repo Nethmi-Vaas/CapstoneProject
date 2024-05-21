@@ -1,5 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Cabbage.dart';
+import 'package:flutter_application_2/Carrots.dart';
+import 'package:flutter_application_2/Gchillie.dart';
+import 'package:flutter_application_2/Potatoes.dart';
+import 'package:flutter_application_2/leeks.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ViewPage extends StatefulWidget {
@@ -65,16 +70,12 @@ class _ViewPageState extends State<ViewPage> {
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Center(
-                child: Text("Some error occurred ${snapshot.error}"),
+                child: Text("Some error occurred: ${snapshot.error}"),
               );
             }
             if (!snapshot.hasData) {
-              return Container(
-                height: 25,
-                width: 25,
-                child: Center(
-                  child: const CircularProgressIndicator(),
-                ),
+              return Center(
+                child: CircularProgressIndicator(),
               );
             } else {
               final selectCropTypes = snapshot.data?.docs ?? [];
@@ -91,29 +92,60 @@ class _ViewPageState extends State<ViewPage> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      color: Colors.white,
-                      child: ListTile(
-                        title: Text(cropTypeItems[index].name),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            LinearPercentIndicator(
-                              width: 140.0,
-                              lineHeight: 14.0,
-                              percent: cropTypeItems[index].percentage / 100,
-                              backgroundColor: Colors.grey,
-                              progressColor: Colors.blue,
-                            ),
-                            Text("Percentage: ${cropTypeItems[index].percentage}%"),
-                          ],
+                    child: InkWell(
+                      onTap: () {
+                        final String crop = cropTypeItems[index].name.toString();
+                        print("Selected crop: $crop");
+
+                        // Navigation based on selected crop   add your crop names and pages
+                        if (crop == "Leeks") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => leeks()),
+                          );
+                        } else if (crop == "Carrot") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Carrot()),
+                          );
+                        } else if (crop == "Cabbage") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Cabbage()),
+                          );
+                        }else if (crop == "Green chilli") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Gchillie()),
+                          );
+                        }else if (crop == "Potato") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Potato()),
+                          );
+                        }else {
+                          print("Unknown crop selected: $crop");
+                        }
+                      },
+                      child: Container(
+                        height: 100,
+                        color: Colors.white,
+                        child: ListTile(
+                          title: Text(cropTypeItems[index].name),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              LinearPercentIndicator(
+                                width: 140.0,
+                                lineHeight: 14.0,
+                                percent: cropTypeItems[index].percentage / 100,
+                                backgroundColor: Colors.grey,
+                                progressColor: Colors.blue,
+                              ),
+                              Text("Percentage: ${cropTypeItems[index].percentage}%"),
+                            ],
+                          ),
                         ),
-                        onTap: () {
-                          setState(() {
-                            selectedCrop = cropTypeItems[index].name;
-                          });
-                        },
                       ),
                     ),
                   );
