@@ -1,9 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Avocado.dart';
+import 'package:flutter_application_2/Brinjal.dart';
 import 'package:flutter_application_2/Cabbage.dart';
 import 'package:flutter_application_2/Carrots.dart';
+import 'package:flutter_application_2/Cowpea.dart';
 import 'package:flutter_application_2/Gchillie.dart';
+import 'package:flutter_application_2/Grapes.dart';
+import 'package:flutter_application_2/GreenGram.dart';
+import 'package:flutter_application_2/KingCoconut.dart';
+import 'package:flutter_application_2/Papaya.dart';
+import 'package:flutter_application_2/Pineapple.dart';
 import 'package:flutter_application_2/Potatoes.dart';
+import 'package:flutter_application_2/Pumpkin.dart';
 import 'package:flutter_application_2/leeks.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -123,7 +132,53 @@ class _ViewPageState extends State<ViewPage> {
                             context,
                             MaterialPageRoute(builder: (context) => Potato()),
                           );
-                        }else {
+                        }else if (crop == "Avocado") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Avocado()),
+                          );
+                        }else if (crop == "Brinjal") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Brinjal()),
+                          );
+                        }else if (crop == "Cowpea") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Cowpea()),
+                          );
+                        }else if (crop == "Grapes") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Grapes()),
+                          );
+                        }else if (crop == "Green Gram") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => GreenGram()),
+                          );
+                        }else if (crop == "King Coconut") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => KingCoco()),
+                          );
+                        }else if (crop == "Papaya") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Papaya()),
+                          );
+                        }else if (crop == "Pineapple") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Pineapple()),
+                          );
+                        }else if (crop == "Pumpkin") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Pumpkin()),
+                          );
+                        }
+                        else {
                           print("Unknown crop selected: $crop");
                         }
                       },
