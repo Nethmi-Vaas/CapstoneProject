@@ -59,7 +59,6 @@ class _DropDownState extends State<DropDown> {
           const SizedBox(height: 20),
           if (showCropDropdown) _buildselectcroptypeDropdown(),
           const SizedBox(height: 20),
-
           const SizedBox(height: 40),
           ElevatedButton(
             onPressed: () {
@@ -68,14 +67,11 @@ class _DropDownState extends State<DropDown> {
                   selectedArea != null &&
                    selectedCroptype != null) {
 
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => ViewPage(selectedMonth: '$selectedMonth', selectedDistrict: '$selectedDistrict', selectedArea: '$selectedArea', selectedCroptype: '$selectedCroptype',)),
                 );
 
-
-               // fetchDataFromFirestore(selectedMonth!, selectedDistrict!,
-                 //   selectedArea!, selectedCroptype!);
               } else {
                 print('Please select all options');
               }
@@ -221,7 +217,6 @@ class _DropDownState extends State<DropDown> {
                   setState(() {
                     selectedDistrict = value;
                     showAreaDropdown = true;
-
                   });
                 },
               ),
@@ -288,6 +283,7 @@ class _DropDownState extends State<DropDown> {
       },
     );
   }
+
   Widget _buildselectcroptypeDropdown() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection("Crop_Type").snapshots(),
@@ -326,7 +322,7 @@ class _DropDownState extends State<DropDown> {
                 underline: const SizedBox(),
                 isExpanded: true,
                 hint: const Text(
-                  "Select the Crop",
+                  "Select the Crop Type",
                   style: TextStyle(fontSize: 20),
                 ),
                 value: selectedCroptype,
@@ -344,9 +340,6 @@ class _DropDownState extends State<DropDown> {
       },
     );
   }
-
-
-
 
   Widget _buildFetchedDataList() {
     return Expanded(
@@ -386,123 +379,3 @@ class _DropDownState extends State<DropDown> {
     });
   }
 }
-
-
-/*Widget _buildCropTypeDropdown() {
-  return StreamBuilder<QuerySnapshot>(
-    stream: FirebaseFirestore.instance.collection("Area_crop_month").where("M_id",isEqualTo: selectedMonth).snapshots(),
-    builder: (context, snapshot) {
-      if (snapshot.hasError) {
-        return Center(
-          child: Text("Some error occurred ${snapshot.error}"),
-        );
-      }
-      List<DropdownMenuItem<String>> cropTypeItems = [];
-      if (!snapshot.hasData) {
-        return Container(
-          height: 25,
-          width: 25,
-          child: Center(
-
-              child: const CircularProgressIndicator()),
-        );
-      } else {
-        final selectCropTypes = snapshot.data?.docs;
-        if (selectCropTypes != null) {
-          for (var cropType in selectCropTypes) {
-            cropTypeItems.add(
-              DropdownMenuItem(
-                value:  cropType['C_name']??"",
-                child: Text(
-                  cropType['C_name']??"",
-                ),
-              ),
-            );
-          }
-        }
-
-        return StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection("Area_crop_month").where("A_id",isEqualTo: selectedArea).snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Center(
-                child: Text("Some error occurred ${snapshot.error}"),
-              );
-            }
-            List<DropdownMenuItem<String>> cropTypeItems = [];
-            if (!snapshot.hasData) {
-              return const CircularProgressIndicator();
-            } else {
-              final selectCropTypes = snapshot.data?.docs;
-              if (selectCropTypes != null) {
-                for (var cropType in selectCropTypes) {
-                  cropTypeItems.add(
-                    DropdownMenuItem(
-                      value:  cropType['C_name']??"",
-                      child: Text(
-                        cropType['C_name']??"",
-                      ),
-                    ),
-                  );
-                }
-              }
-              return StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collection("Area_crop_month").where("CT_id",isEqualTo: selectedCroptype).snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Center(
-                      child: Text("Some error occurred ${snapshot.error}"),
-                    );
-                  }
-                  List<DropdownMenuItem<String>> cropTypeItems = [];
-                  if (!snapshot.hasData) {
-                    return const CircularProgressIndicator();
-                  } else {
-                    final selectCropTypes = snapshot.data?.docs;
-                    if (selectCropTypes != null) {
-                      for (var cropType in selectCropTypes) {
-                        cropTypeItems.add(
-                          DropdownMenuItem(
-                            value:  cropType['C_name']??"",
-                            child: Text(
-                              cropType['C_name']??"",
-                            ),
-                          ),
-                        );
-                      }
-                    }
-                    return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey, width: 1),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: DropdownButton<String>(
-                          underline: const SizedBox(),
-                          isExpanded: true,
-                          hint: const Text(
-                            "Select the Crop Type",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          value: selectedCrop,
-                          items: cropTypeItems,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedCrop = value;
-                            });
-                          },
-                        ),
-                      ),
-                    );
-                  }
-                },
-              );
-            }
-          },
-        );
-      }
-    },
-  );
-}*/

@@ -85,13 +85,9 @@ class Pineapple extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(1, 5, 10, 5),
+            padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
             child: Row(
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_back),
-                ),
                 Image.asset(
                   'assets/applogo.png',
                   scale: 0.7,
@@ -157,7 +153,8 @@ class GridItem extends StatelessWidget {
   final String text2;
   final Color color;
 
-  const GridItem({super.key, 
+  const GridItem({
+    super.key,
     required this.image,
     required this.text1,
     required this.text2,
