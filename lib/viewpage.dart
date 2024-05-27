@@ -44,173 +44,269 @@ class _ViewPageState extends State<ViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/applogo.png',
+                    alignment: Alignment.topLeft,
+                  ),
+                ],
+              ),
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
-            child: Row(
+        ),
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Stack(
               children: [
-                Image.asset(
-                  'assets/applogo.png',
-                  alignment: Alignment.topLeft,
+                Positioned.fill(
+                  child: Image.asset(
+                    'assets/chartbg.jpg',
+                    fit: BoxFit.cover,
+                    // Adjust the width and height as needed
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: MediaQuery.of(context).size.height * 0.9,
+                  ),
+                ),
+                Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Market Price Rates',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Crops List',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance
+                            .collection("Area_crop_month")
+                            .where("M_id", isEqualTo: selectedMonth)
+                            .where("A_id", isEqualTo: selectedArea)
+                            .where("CT_id", isEqualTo: selectedCroptype)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Center(
+                              child: Text(
+                                  "Some error occurred: ${snapshot.error}"),
+                            );
+                          }
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            final selectCropTypes = snapshot.data?.docs ?? [];
+                            List<CropType> cropTypeItems =
+                                selectCropTypes.map((cropType) {
+                              return CropType(
+                                name: cropType['C_name'] ?? "",
+                                percentage: cropType['Percentage'] ?? 0,
+                              );
+                            }).toList();
+
+                            return ListView.builder(
+                              padding: const EdgeInsets.all(10.0),
+                              itemCount: cropTypeItems.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                      onTap: () {
+                                        final String crop = cropTypeItems[index]
+                                            .name
+                                            .toString();
+                                        print("Selected crop: $crop");
+
+                                        // Navigation based on selected crop
+                                        if (crop == "Leeks") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => leeks()),
+                                          );
+                                        } else if (crop == "Carrot") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Carrot()),
+                                          );
+                                        } else if (crop == "Cabbage") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Cabbage()),
+                                          );
+                                        } else if (crop == "Green chilli") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Gchillie()),
+                                          );
+                                        } else if (crop == "Potato") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Potato()),
+                                          );
+                                        } else if (crop == "Avocado") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Avocado()),
+                                          );
+                                        } else if (crop == "Brinjal") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Brinjal()),
+                                          );
+                                        } else if (crop == "Cowpea") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Cowpea()),
+                                          );
+                                        } else if (crop == "Grapes") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Grapes()),
+                                          );
+                                        } else if (crop == "Graphes") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Grapes()),
+                                          );
+                                        } else if (crop == "Green Gram") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    GreenGram()),
+                                          );
+                                        } else if (crop == "King Coconut") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    KingCoco()),
+                                          );
+                                        } else if (crop == "Papaya") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Papaya()),
+                                          );
+                                        } else if (crop == "Pineapple") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Pineapple()),
+                                          );
+                                        } else if (crop == "Pumpkin") {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Pumpkin()),
+                                          );
+                                        } else {
+                                          print("Unknown crop selected: $crop");
+                                        }
+                                      },
+                                      child: Container(
+                                        height: 90,
+                                        width: 200,
+                                        decoration: BoxDecoration(
+                                          color:const Color.fromARGB(
+                                              255, 250, 250, 250),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: ListTile(
+                                          title:
+                                              Text(cropTypeItems[index].name),
+                                          subtitle: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  LinearPercentIndicator(
+                                                    width: 120.0,
+                                                    lineHeight: 20.0,
+                                                    percent:
+                                                        cropTypeItems[index]
+                                                                .percentage /
+                                                            100,
+                                                    backgroundColor:
+                                                        Colors.grey,
+                                                    progressColor:
+                                                        const Color(0xFF16764B),
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  Image.network(
+                                                    'https://th.bing.com/th/id/R.0673093bbfcecc10fc43a2e61243415c?rik=1pH9V0jCRyiRdQ&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2farrow-image-transparent%2farrow-image-transparent-9.png&ehk=tGpJQDxnJ%2bq7S2HVaT2wMHWwaLHTtpQ%2b%2baxiZvotuvY%3d&risl=&pid=ImgRaw&r=0',
+                                                    width: 25,
+                                                    height: 20,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 5),
+                                            ],
+                                          ),
+                                        ),
+                                      )),
+                                );
+                              },
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
-        ),
-      ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection("Area_crop_month")
-              .where("M_id", isEqualTo: selectedMonth)
-              .where("A_id", isEqualTo: selectedArea)
-              .where("CT_id", isEqualTo: selectedCroptype)
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Center(
-                child: Text("Some error occurred: ${snapshot.error}"),
-              );
-            }
-            if (!snapshot.hasData) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              final selectCropTypes = snapshot.data?.docs ?? [];
-              List<CropType> cropTypeItems = selectCropTypes.map((cropType) {
-                return CropType(
-                  name: cropType['C_name'] ?? "",
-                  percentage: cropType['Percentage'] ?? 0,
-                );
-              }).toList();
-
-              return ListView.builder(
-                padding: const EdgeInsets.all(10.0),
-                itemCount: cropTypeItems.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        final String crop = cropTypeItems[index].name.toString();
-                        print("Selected crop: $crop");
-
-                        // Navigation based on selected crop   add your crop names and pages
-                        if (crop == "Leeks") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => leeks()),
-                          );
-                        } else if (crop == "Carrot") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Carrot()),
-                          );
-                        } else if (crop == "Cabbage") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Cabbage()),
-                          );
-                        }else if (crop == "Green chilli") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Gchillie()),
-                          );
-                        }else if (crop == "Potato") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Potato()),
-                          );
-                        }else if (crop == "Avocado") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Avocado()),
-                          );
-                        }else if (crop == "Brinjal") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Brinjal()),
-                          );
-                        }else if (crop == "Cowpea") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Cowpea()),
-                          );
-                        }else if (crop == "Grapes") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Grapes()),
-                          );
-                        }else if (crop == "Green Gram") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => GreenGram()),
-                          );
-                        }else if (crop == "King Coconut") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => KingCoco()),
-                          );
-                        }else if (crop == "Papaya") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Papaya()),
-                          );
-                        }else if (crop == "Pineapple") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Pineapple()),
-                          );
-                        }else if (crop == "Pumpkin") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Pumpkin()),
-                          );
-                        }
-                        else {
-                          print("Unknown crop selected: $crop");
-                        }
-                      },
-                      child: Container(
-                        height: 100,
-                        color: Colors.white,
-                        child: ListTile(
-                          title: Text(cropTypeItems[index].name),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              LinearPercentIndicator(
-                                width: 140.0,
-                                lineHeight: 14.0,
-                                percent: cropTypeItems[index].percentage / 100,
-                                backgroundColor: Colors.grey,
-                                progressColor: Colors.blue,
-                              ),
-                              Text("Percentage: ${cropTypeItems[index].percentage}%"),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }
-          },
-        ),
-      ),
-    );
+        ));
   }
 }
 

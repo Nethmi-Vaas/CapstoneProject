@@ -190,18 +190,18 @@ class dashBoard extends StatelessWidget {
                         children: [
                           Image.asset(
                             'assets/img_feedback_1.png',
-                            width: 92,
-                            height: 92,
+                            width: 90,
+                            height: 90,
                             alignment: Alignment.center,
                           ),
                           const SizedBox(
                             height: 10,
                           ),
                           const Text(
-                            'Feedbacks &   Suggestions',
+                            'Feedbacks & Suggestions',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 15,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
