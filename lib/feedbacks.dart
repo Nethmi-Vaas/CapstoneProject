@@ -137,7 +137,7 @@ class _FeedBacksState extends State<FeedBacks> {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize:23,
                   ),
                 ),
                 const SizedBox(height: 8.0),

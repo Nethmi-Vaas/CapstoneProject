@@ -126,7 +126,7 @@ class Carrot extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                    width: 10), // Adding space between text and image
+                    width: 10), 
                 Image.asset(
                   'assets/img_image_2.png',
                   width: 100,

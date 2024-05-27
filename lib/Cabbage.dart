@@ -61,22 +61,22 @@ class Cabbage extends StatelessWidget {
     {
       'image': 'assets/v11.png',
       'text1': 'Fertilizers ',
-      'text2': 'Thiocyclam', // Additional text for the first box
-      'color': const Color(0xFFF6A33E), // Color for the first box
+      'text2': 'Thiocyclam', 
+      'color': const Color(0xFFF6A33E), 
     },
     {
       'image': 'assets/v12.png',
       'text1': 'Fertilizers',
-      'text2': 'Thiamethoxam ', // Additional text for the first box
-      'color': const Color(0xFFF6A33E), // Color for the first box
+      'text2': 'Thiamethoxam ', 
+      'color': const Color(0xFFF6A33E), 
     },
     {
       'image': 'assets/v13.png',
       'text1': 'Fertilizers',
-      'text2': 'Imidacloprid', // Additional text for the first box
-      'color': const Color(0xFFF6A33E), // Color for the first box
+      'text2': 'Imidacloprid', 
+      'color': const Color(0xFFF6A33E), 
     },
-    // Add more items here with different colors
+    
   ];
 
   @override

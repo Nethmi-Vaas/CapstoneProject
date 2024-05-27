@@ -48,24 +48,24 @@ class userGuide extends StatelessWidget {
             ),
             const SizedBox(height: 2.0),
             const Text(
-              " *First select a district, an area and then a month.",
+              " *First select a month, a district, an area and also a type of crops that you want to cultivate.",
               textAlign: TextAlign.justify,
             ),
             const SizedBox(height: 2.0),
             const Text(
-              " *After submitting this, you can see the higher price rates of the crops in that selected month.",
+              " *After submitting this, you can see the higher price rates of the crops in that selected month and the particular area.",
               textAlign: TextAlign.justify,
             ),
             const SizedBox(height: 2.0),
             const Text(
-              " *After clicking one of those crops, you can see temperature, diseases, fertilizers and some valuable information of that crop.",
+              " *After clicking one of those crops, you can see temperature, diseases, fertilizers and some valuable information of that crop.By checking one by one, you can select the best option that is suitable to cultivate. ",
               textAlign: TextAlign.justify,
             ),
             const SizedBox(height: 2.0),
             const Text(
                 " *Further, you can enter your feedbacks and suggestions for improving iCrop.",
                 textAlign: TextAlign.justify),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 40.0),
             GestureDetector(
               onTap: () {
                 Navigator.push(
