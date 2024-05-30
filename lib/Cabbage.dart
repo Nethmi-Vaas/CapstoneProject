@@ -61,22 +61,21 @@ class Cabbage extends StatelessWidget {
     {
       'image': 'assets/v11.png',
       'text1': 'Fertilizers ',
-      'text2': 'Thiocyclam', 
-      'color': const Color(0xFFF6A33E), 
+      'text2': 'Thiocyclam',
+      'color': const Color(0xFFF6A33E),
     },
     {
       'image': 'assets/v12.png',
       'text1': 'Fertilizers',
-      'text2': 'Thiamethoxam ', 
-      'color': const Color(0xFFF6A33E), 
+      'text2': 'Thiamethoxam ',
+      'color': const Color(0xFFF6A33E),
     },
     {
       'image': 'assets/v13.png',
       'text1': 'Fertilizers',
-      'text2': 'Imidacloprid', 
-      'color': const Color(0xFFF6A33E), 
+      'text2': 'Imidacloprid',
+      'color': const Color(0xFFF6A33E),
     },
-    
   ];
 
   @override
@@ -95,12 +94,8 @@ class Cabbage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
             child: Row(
               children: [
-                
                 Image.asset(
                   'assets/applogo.png',
-                  scale: 0.7,
-                  width: 300,
-                  height: 300,
                   alignment: Alignment.topLeft,
                 ),
               ],
@@ -162,7 +157,8 @@ class GridItem extends StatelessWidget {
   final String text2;
   final Color color;
 
-  const GridItem({super.key, 
+  const GridItem({
+    super.key,
     required this.image,
     required this.text1,
     required this.text2,
