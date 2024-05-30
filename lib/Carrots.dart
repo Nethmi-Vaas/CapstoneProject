@@ -97,9 +97,7 @@ class Carrot extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/applogo.png',
-                  scale: 0.7,
-                  width: 300,
-                  height: 300,
+                  
                   alignment: Alignment.topLeft,
                 ),
               ],

@@ -219,7 +219,7 @@ class _ViewPageState extends State<ViewPage> {
                                                 builder: (context) =>
                                                     GreenGram()),
                                           );
-                                        } else if (crop == "King Coconut") {
+                                        } else if (crop == "King coconut") {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
