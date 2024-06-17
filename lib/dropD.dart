@@ -47,7 +47,7 @@ class _DropDownState extends State<DropDown> {
           ),
         ),
       ),
-      body: Column(
+      body: SingleChildScrollView (child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 50),
@@ -58,8 +58,8 @@ class _DropDownState extends State<DropDown> {
           if (showAreaDropdown) _buildAreaDropdown(),
           const SizedBox(height: 20),
           if (showCropDropdown) _buildselectcroptypeDropdown(),
-          const SizedBox(height: 20),
-          const SizedBox(height: 40),
+          const SizedBox(height: 10),
+          
           ElevatedButton(
             onPressed: () {
               if (selectedMonth != null &&
@@ -111,7 +111,7 @@ class _DropDownState extends State<DropDown> {
           if (fetchedData.isNotEmpty) _buildFetchedDataList(),
         ],
       ),
-    );
+    ));
   }
 
   Widget _buildMonthDropdown() {

@@ -1,4 +1,4 @@
-import  'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_2/dashboard.dart';
 
@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds:5 ), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (_) => const dashBoard(),
       ));
@@ -44,9 +44,12 @@ class _SplashScreenState extends State<SplashScreen>
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(
-              'assets/img_removal_6.png', 
-              fit: BoxFit.cover,
+            Align(
+              alignment: Alignment(0, -0.2), // Adjust this value to move the image up or down
+              child: Image.asset(
+                'assets/img_removal_6.png',
+                fit: BoxFit.cover,
+              ),
             ),
             Center(
               child: Image.asset(
