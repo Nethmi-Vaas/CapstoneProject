@@ -269,12 +269,12 @@ class _ViewPageState extends State<ViewPage> {
                                                       const Color(0xFF16764B),
                                                 ),
                                                 const SizedBox(width: 5),
-                                                Image.network(
+                                                Image.asset(
                                                   'assets/arrow.png',
                                                   width: 25,
                                                   height: 20,
                                                   fit: BoxFit.cover,
-                                                ),
+                                                )
                                               ],
                                             ),
                                             const SizedBox(height: 5),
