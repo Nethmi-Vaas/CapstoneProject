@@ -32,9 +32,7 @@ class userGuide extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          
           SingleChildScrollView(
-            
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +51,8 @@ class userGuide extends StatelessWidget {
                   "Welcome to iCrop! This user guide is designed to help you make the most out of our app by providing instructions and helpful tips. Thank you for trusting us with your privacy.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 2.0),
@@ -61,7 +60,8 @@ class userGuide extends StatelessWidget {
                   " *First select a month, a district, an area and also a type of crops that you want to cultivate.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 2.0),
@@ -69,7 +69,8 @@ class userGuide extends StatelessWidget {
                   " *After submitting this, you can see the higher price rates of the crops in that selected month and the particular area.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 2.0),
@@ -77,7 +78,8 @@ class userGuide extends StatelessWidget {
                   " *After clicking one of those crops, you can see temperature, diseases, fertilizers and some valuable information of that crop. By checking one by one, you can select the best option that is suitable to cultivate.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 2.0),
@@ -85,7 +87,8 @@ class userGuide extends StatelessWidget {
                   " *Further, you can enter your feedbacks and suggestions for improving iCrop.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 40.0),

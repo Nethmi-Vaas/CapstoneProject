@@ -25,93 +25,98 @@ class _DropDownState extends State<DropDown> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/applogo.png',
-                  alignment: Alignment.topLeft,
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/applogo.png',
+                    alignment: Alignment.topLeft,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-      body: SingleChildScrollView (child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: 50),
-          _buildMonthDropdown(),
-          const SizedBox(height: 20),
-          _buildDistrictDropdown(),
-          const SizedBox(height: 20),
-          if (showAreaDropdown) _buildAreaDropdown(),
-          const SizedBox(height: 20),
-          if (showCropDropdown) _buildselectcroptypeDropdown(),
-          const SizedBox(height: 10),
-          
-          ElevatedButton(
-            onPressed: () {
-              if (selectedMonth != null &&
-                  selectedDistrict != null &&
-                  selectedArea != null &&
-                   selectedCroptype != null) {
-
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => ViewPage(selectedMonth: '$selectedMonth', selectedDistrict: '$selectedDistrict', selectedArea: '$selectedArea', selectedCroptype: '$selectedCroptype',)),
-                );
-
-              } else {
-                print('Please select all options');
-              }
-            },
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 50),
+              _buildMonthDropdown(),
+              const SizedBox(height: 20),
+              _buildDistrictDropdown(),
+              const SizedBox(height: 20),
+              if (showAreaDropdown) _buildAreaDropdown(),
+              const SizedBox(height: 20),
+              if (showCropDropdown) _buildselectcroptypeDropdown(),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  if (selectedMonth != null &&
+                      selectedDistrict != null &&
+                      selectedArea != null &&
+                      selectedCroptype != null) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ViewPage(
+                                selectedMonth: '$selectedMonth',
+                                selectedDistrict: '$selectedDistrict',
+                                selectedArea: '$selectedArea',
+                                selectedCroptype: '$selectedCroptype',
+                              )),
+                    );
+                  } else {
+                    print('Please select all options');
+                  }
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-              ),
-              child: const Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                  ),
+                  child: const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 10.0),
+                      child: Text(
+                        'Submit',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
+              const SizedBox(height: 20),
+              if (fetchedData.isNotEmpty) _buildFetchedDataList(),
+            ],
           ),
-          const SizedBox(height: 20),
-          if (fetchedData.isNotEmpty) _buildFetchedDataList(),
-        ],
-      ),
-    ));
+        ));
   }
 
   Widget _buildMonthDropdown() {
@@ -229,7 +234,10 @@ class _DropDownState extends State<DropDown> {
 
   Widget _buildAreaDropdown() {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection("Area").where("D_id",isEqualTo: selectedDistrict).snapshots(),
+      stream: FirebaseFirestore.instance
+          .collection("Area")
+          .where("D_id", isEqualTo: selectedDistrict)
+          .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -354,7 +362,8 @@ class _DropDownState extends State<DropDown> {
     );
   }
 
-  void fetchDataFromFirestore(String month, String district, String area, String cropType) {
+  void fetchDataFromFirestore(
+      String month, String district, String area, String cropType) {
     FirebaseFirestore.instance
         .collection("Month")
         .doc(month)
@@ -369,11 +378,10 @@ class _DropDownState extends State<DropDown> {
         fetchedData.clear();
         for (var doc in querySnapshot.docs) {
           fetchedData.add(doc['C1']); // C1 - field name
-          fetchedData.add(doc['C2']); 
-          fetchedData.add(doc['C3']); 
-          fetchedData.add(doc['C4']); 
-          fetchedData.add(doc['C5']); 
-          
+          fetchedData.add(doc['C2']);
+          fetchedData.add(doc['C3']);
+          fetchedData.add(doc['C4']);
+          fetchedData.add(doc['C5']);
         }
       });
     });

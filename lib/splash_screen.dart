@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds:5 ), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (_) => const dashBoard(),
       ));
@@ -45,7 +45,8 @@ class _SplashScreenState extends State<SplashScreen>
           fit: StackFit.expand,
           children: [
             Align(
-              alignment: Alignment(0, -0.2), // Adjust this value to move the image up or down
+              alignment: const Alignment(
+                  0, -0.2), // Adjust this value to move the image up or down
               child: Image.asset(
                 'assets/img_removal_6.png',
                 fit: BoxFit.cover,

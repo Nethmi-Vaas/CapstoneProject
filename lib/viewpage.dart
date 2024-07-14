@@ -139,8 +139,8 @@ class _ViewPageState extends State<ViewPage> {
                               itemCount: cropTypeItems.length,
                               itemBuilder: (context, index) {
                                 return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: InkWell(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: InkWell(
                                       onTap: () {
                                         final String crop = cropTypeItems[index]
                                             .name
@@ -250,51 +250,38 @@ class _ViewPageState extends State<ViewPage> {
                                           print("Unknown crop selected: $crop");
                                         }
                                       },
-                                      child: Container(
-                                        height: 90,
-                                        width: 200,
-                                        decoration: BoxDecoration(
-                                          color:const Color.fromARGB(
-                                              255, 250, 250, 250),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
+                                      child: ListTile(
+                                        title: Text(cropTypeItems[index].name),
+                                        subtitle: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                LinearPercentIndicator(
+                                                  width: 120.0,
+                                                  lineHeight: 20.0,
+                                                  percent: cropTypeItems[index]
+                                                          .percentage /
+                                                      100,
+                                                  backgroundColor: Colors.grey,
+                                                  progressColor:
+                                                      const Color(0xFF16764B),
+                                                ),
+                                                const SizedBox(width: 5),
+                                                Image.network(
+                                                  'assets/arrow.png',
+                                                  width: 25,
+                                                  height: 20,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 5),
+                                          ],
                                         ),
-                                        child: ListTile(
-                                          title:
-                                              Text(cropTypeItems[index].name),
-                                          subtitle: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  LinearPercentIndicator(
-                                                    width: 120.0,
-                                                    lineHeight: 20.0,
-                                                    percent:
-                                                        cropTypeItems[index]
-                                                                .percentage /
-                                                            100,
-                                                    backgroundColor:
-                                                        Colors.grey,
-                                                    progressColor:
-                                                        const Color(0xFF16764B),
-                                                  ),
-                                                  const SizedBox(width: 5),
-                                                  Image.network(
-                                                    'https://th.bing.com/th/id/R.0673093bbfcecc10fc43a2e61243415c?rik=1pH9V0jCRyiRdQ&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2farrow-image-transparent%2farrow-image-transparent-9.png&ehk=tGpJQDxnJ%2bq7S2HVaT2wMHWwaLHTtpQ%2b%2baxiZvotuvY%3d&risl=&pid=ImgRaw&r=0',
-                                                    width: 25,
-                                                    height: 20,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(height: 5),
-                                            ],
-                                          ),
-                                        ),
-                                      )),
-                                );
+                                      ),
+                                    ));
                               },
                             );
                           }
