@@ -90,4 +90,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'capstone-53c84.appspot.com',
     measurementId: 'G-38FBSP8NWM',
   );
+
 }
