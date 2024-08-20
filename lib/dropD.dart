@@ -27,19 +27,13 @@ class _DropDownState extends State<DropDown> {
     return Scaffold(
         appBar: AppBar(
           flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
+            decoration: const BoxDecoration(color: Colors.white),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
+              padding: const EdgeInsets.fromLTRB(25, 1, 50, 0.1),
               child: Row(
                 children: [
                   Image.asset(
-                    'assets/applogo.png',
+                    'assets/logo.png',
                     alignment: Alignment.topLeft,
                   ),
                 ],
@@ -90,11 +84,7 @@ class _DropDownState extends State<DropDown> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
+                    color: Colors.green
                   ),
                   child: const Center(
                     child: Padding(

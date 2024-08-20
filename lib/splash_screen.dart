@@ -35,23 +35,13 @@ class _SplashScreenState extends State<SplashScreen>
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-          ),
+          color: Colors.white
         ),
-        child: Stack(
-          fit: StackFit.expand,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Align(
-              alignment: const Alignment(
-                  0, -0.2), // Adjust this value to move the image up or down
-              child: Image.asset(
-                'assets/img_removal_6.png',
-                fit: BoxFit.cover,
-              ),
-            ),
+
             Center(
               child: Image.asset(
                 'assets/logo.png',

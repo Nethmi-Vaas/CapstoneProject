@@ -46,19 +46,13 @@ class _ViewPageState extends State<ViewPage> {
     return Scaffold(
         appBar: AppBar(
           flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
+            decoration: const BoxDecoration(color: Colors.white),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
+              padding: const EdgeInsets.fromLTRB(25, 1, 50, 0.1),
               child: Row(
                 children: [
                   Image.asset(
-                    'assets/applogo.png',
+                    'assets/logo.png',
                     alignment: Alignment.topLeft,
                   ),
                 ],
@@ -72,15 +66,7 @@ class _ViewPageState extends State<ViewPage> {
             width: MediaQuery.of(context).size.width,
             child: Stack(
               children: [
-                Positioned.fill(
-                  child: Image.asset(
-                    'assets/chartbg.jpg',
-                    fit: BoxFit.cover,
-                    // Adjust the width and height as needed
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: MediaQuery.of(context).size.height * 0.9,
-                  ),
-                ),
+
                 Column(
                   children: [
                     const Padding(
