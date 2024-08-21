@@ -38,6 +38,8 @@ dependencies:
   firebase_core: ^2.12.0
   cloud_firestore: ^4.17.3
   percent_indicator: ^4.2.3
+  salomon_bottom_bar: ^3.3.2
+  carousel_slider: ^4.0.0
 
 
 dev_dependencies:
@@ -64,83 +66,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - assets/logo.png
-  - assets/img_removal_6.png
-  - assets/img_removal_9.png
-  - assets/crops.png
-  - assets/img_1355174_1.png
-  - assets/img_feedback_1.png
-  - assets/v1.png
-  - assets/v2.png
-  - assets/v3.png
-  - assets/v4.png
-  - assets/v5.png
-  - assets/v7.png
-  - assets/v8.png
-  - assets/v9.png
-  - assets/v10.png
-  - assets/v11.png
-  - assets/v12.png
-  - assets/v13.png
-  - assets/name.png
-  - assets/img_image_2.png
-  - assets/leeks.png
-  - assets/cabbage.png
-  - assets/pump1.png
-  - assets/gc.png
-  - assets/pota.png
-  - assets/gr.png
-  - assets/papa.png
-  - assets/pa.png
-  - assets/avo1.png
-  - assets/applogo.png
-  - assets/spacing.PNG
-  - assets/rootrot.jpeg
-  - assets/canker.jpeg
-  - assets/scab.jpeg
-  - assets/Citrus-Fertilizer.jpg
-  - assets/chickenM.jpeg
-  - assets/blakrot.jpeg
-  - assets/whiterust.jpeg
-  - assets/fruitrot.jpeg
-  - assets/dampingoff.jpeg
-  - assets/compost.jpeg
-  - assets/rottedmanure.jpeg
-  - assets/rust.jpeg
-  - assets/whiterot.jpeg
-  - assets/pro.jpeg
-  - assets/downeyM.jpeg
-  - assets/nitpo.jpeg
-  - assets/waterB.jpeg
-  - assets/psb.jpeg
-  - assets/plb.jpg
-  - assets/peb.jpeg
-  - assets/cmbf.jpeg
-  - assets/blight.jpeg
-  - assets/phrange.jpg
-  - assets/cattlecompost.jpg
-  - assets/TSP.jpg
-  - assets/npk.jpg
-  - assets/Rockpos.jpg
-  - assets/SinSup.jpg
-  - assets/DAP.jpg
-  - assets/MuriateofPot.jpg
-  - assets/leafspot.jpg
-  - assets/phomopsisblight.jpg
-  - assets/alternaria_.jpg
-  - assets/Cowpea mosaic.jpg
-  - assets/Gray.jpg
-  - assets/BudRot.jpg
-  - assets/leafrot.jpg
-  - assets/BacterialBlight.jpg
-  - assets/Brinjal.png
-  - assets/greengram.png
-  - assets/Cowpee.png
-  - assets/pospho.jpg
-  - assets/KingCo.png
-  - assets/bg.jpg
-  - assets/arrow.png
-  - assets/chartbg.jpg
+  - assets/
+
 
   
 

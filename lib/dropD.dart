@@ -120,7 +120,10 @@ class _DropDownState extends State<DropDown> {
         }
         List<DropdownMenuItem<String>> monthItems = [];
         if (!snapshot.hasData) {
-          return const CircularProgressIndicator();
+          return Container(
+              height: 40,
+              width: 40,
+              child: const CircularProgressIndicator());
         } else {
           final selectMonth = snapshot.data?.docs;
           if (selectMonth != null) {
@@ -176,7 +179,10 @@ class _DropDownState extends State<DropDown> {
         }
         List<DropdownMenuItem<String>> districtItems = [];
         if (!snapshot.hasData) {
-          return const CircularProgressIndicator();
+          return Container(
+              height: 40,
+              width: 40,
+              child: const CircularProgressIndicator());
         } else {
           final selectDistrict = snapshot.data?.docs;
           if (selectDistrict != null) {
@@ -236,7 +242,10 @@ class _DropDownState extends State<DropDown> {
         }
         List<DropdownMenuItem<String>> areaItems = [];
         if (!snapshot.hasData) {
-          return const CircularProgressIndicator();
+          return Container(
+              height: 40,
+              width: 40,
+              child: const CircularProgressIndicator());
         } else {
           final selectArea = snapshot.data?.docs;
           if (selectArea != null) {
@@ -293,7 +302,10 @@ class _DropDownState extends State<DropDown> {
         }
         List<DropdownMenuItem<String>> areaItems = [];
         if (!snapshot.hasData) {
-          return const CircularProgressIndicator();
+          return Container(
+              height: 40,
+              width: 40,
+              child: const CircularProgressIndicator());
         } else {
           final selectcroptype = snapshot.data?.docs;
           if (selectcroptype != null) {

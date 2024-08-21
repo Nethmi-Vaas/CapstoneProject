@@ -1,196 +1,135 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_2/dropD.dart';
 import 'package:flutter_application_2/feedbacks.dart';
 import 'package:flutter_application_2/userguide.dart';
 
-// ignore: camel_case_types
-class dashBoard extends StatelessWidget {
-  const dashBoard({super.key});
+class DashBoardHome extends StatelessWidget {
+  const DashBoardHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(color: Colors.white),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(25, 1, 50, 0.1),
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/logo.png',
-                  alignment: Alignment.topLeft,
-                ),
-              ],
-            ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Colors.black),
+          onPressed: () {
+            // Add drawer functionality if needed
+          },
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Icon(Icons.notifications, color: Colors.black),
           ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/logo.png', // Replace with your logo path
+              width: 100,
+              height: 100,
+            ),
+            const SizedBox(height: 10),
+            _buildCarouselSlider(),
+            const SizedBox(height: 20),
+            _buildOptionCard(
+              context,
+              'User Guide',
+              'assets/user_guide_image.png', // Replace with your image
+              const userGuide(),
+            ),
+            _buildOptionCard(
+              context,
+              'Crop Selection',
+              'assets/crop_selection_image.png', // Replace with your image
+              const DropDown(),
+            ),
+            _buildOptionCard(
+              context,
+              'Feedbacks and Suggestions',
+              'assets/feedback_image.png', // Replace with your image
+              const FeedBacks(),
+            ),
+          ],
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height,
-        // decoration: const BoxDecoration(color: Colors.white,
-        // image: DecorationImage(image: AssetImage("assets/img_removal_6.png"),
-        //   fit: BoxFit.cover
-        // )),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(40, 40, 40, 10),
-            child: Column(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DropDown(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 180,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF5A8A4D),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
-                          spreadRadius: 2,
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
-                        ),
-                        BoxShadow(
-                          color: Colors.white.withOpacity(0.5),
-                          spreadRadius: -2,
-                          blurRadius: 4,
-                          offset: const Offset(0, -2),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/crops.png',
-                          width: 80,
-                          height: 80,
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          'Crop Selection',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
+    );
+  }
+
+  Widget _buildCarouselSlider() {
+    final List<String> imgList = [
+      'assets/banner1.png', // Replace with your images
+      'assets/banner2.png',
+      'assets/banner3.png',
+    ];
+
+    return CarouselSlider(
+      options: CarouselOptions(
+        height: 150,
+        autoPlay: true,
+        enlargeCenterPage: true,
+        aspectRatio: 16 / 9,
+        viewportFraction: 0.8,
+      ),
+      items: imgList.map((item) => Container(
+        child: Center(
+          child: Image.asset(item, fit: BoxFit.cover, width: 1000),
+        ),
+      )).toList(),
+    );
+  }
+
+  Widget _buildOptionCard(
+      BuildContext context, String title, String imagePath, Widget page) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Color(0xFF8FB98B), // Adjust the color as per your design
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage(imagePath),
+                    fit: BoxFit.cover,
                   ),
                 ),
-                const SizedBox(height: 30.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const userGuide(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: const Color(0xFF5A8A4D),
-                            width: 2,
-                          ),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/img_1355174_1.png',
-                              width: 80,
-                              height: 80,
-                              alignment: Alignment.center,
-                            ),
-                            const SizedBox(height: 10),
-                            const Text(
-                              'User Guide',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const FeedBacks(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: const Color(0xFF5A8A4D),
-                            width: 2,
-                          ),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/img_feedback_1.png',
-                              width: 80,
-                              height: 80,
-                              alignment: Alignment.center,
-                            ),
-                            const SizedBox(height: 10),
-                            const Text(
-                              'Feedbacks and Suggestions',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40.0),
-                Image.asset(
-                  'assets/logo.png',
-                  width: 100,
-                  height: 100,
-                ),
-              ],
+              ),
             ),
-          ),
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor: Color(0xFF6A8759),
+                child: Icon(Icons.add, color: Colors.white),
+              ),
+            ),
+          ],
         ),
       ),
     );
