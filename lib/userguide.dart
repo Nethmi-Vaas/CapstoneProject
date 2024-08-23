@@ -1,136 +1,126 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/privacyPolicy.dart';
 
-// ignore: camel_case_types
-class userGuide extends StatelessWidget {
-  const userGuide({super.key});
+class userGuide extends StatefulWidget {
+  @override
+  _userGuideState createState() => _userGuideState();
+}
+
+class _userGuideState extends State<userGuide> {
+  final PageController _pageController = PageController();
+  int _currentIndex = 0;
+
+  final List<Map<String, String>> _pages = [
+    {
+      'title': 'Welcome to iCrop!',
+      'subtitle': 'This user guide is designed to help you make the most out of our app by providing instructions and helpful tips.',
+      'image': 'assets/User_Guide/image_01.jpg',
+    },
+    {
+      'title': 'Selecting Date and Location',
+      'subtitle': 'Start by selecting the month you are interested in. Once the month is selected, choose the district where you want to check crop prices. After selecting the district, pick a specific area within that district.',
+      'image': 'assets/User_Guide/image_02.jpg',
+    },
+    {
+      'title': 'Viewing Crop Details',
+      'subtitle': 'Choose a Crop: From the list of crops, click on the crop you are interested in to view detailed information.',
+      'image': 'assets/User_Guide/image_03.jpg',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(color: Colors.white),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(25, 1, 50, 0.1),
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/logo.png',
-                  alignment: Alignment.topLeft,
-                ),
-              ],
-            ),
-          ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Colors.black),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
         ),
+        title: Image.asset(
+          'assets/Logo/logo.png', // Replace with your logo path
+          height: 40,
+        ),
+        centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Center(
-              child: Column(
-                children: [
-                  const SizedBox(height: 8.0),
-                  const Text(
-                    "How to use ?",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28,
-                    ),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+              itemCount: _pages.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/help_icon.png', // Your icon image
-                        width: 50,
-                        height: 50,
+                        _pages[index]['image']!,
+                        height: 250,
                       ),
-                      const SizedBox(width: 16.0),
-                      Expanded(
-                        child: const Text(
-                          "Welcome to iCrop! This user guide is designed to help you make the most out of our app by providing instructions and helpful tips.",
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 16,
-                          ),
+                      const SizedBox(height: 20),
+                      Text(
+                        _pages[index]['title']!,
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 16.0),
-                      Image.asset(
-                        'assets/calendar_icon.png', // Your icon image
-                        width: 50,
-                        height: 50,
+                      const SizedBox(height: 20),
+                      Text(
+                        _pages[index]['subtitle']!,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black54,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            const Divider(color: Colors.black),
-            const SizedBox(height: 20.0),
-            _buildStep(context, "1", "Step 01", "First select a month and then a District and an area."),
-            _buildStep(context, "2", "Step 02", "After submitting this, you can see the higher price rates of the crops in that selected month."),
-            _buildStep(context, "3", "Step 03", "After clicking one of those crops, you can see temperature, diseases, fertilizers and some valuable information of that crop."),
-            _buildStep(context, "4", "Step 04", "Further, you can enter your feedbacks and suggestions for improving iCrop."),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildStep(BuildContext context, String number, String title, String description) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            backgroundColor: const Color(0xFF5A8A4D),
-            radius: 20,
-            child: Text(
-              number,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+                );
+              },
             ),
           ),
-          const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.75,
-                child: Text(
-                  description,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              _pages.length,
+                  (index) => buildDot(index, context),
+            ),
           ),
+          const SizedBox(height: 20),
         ],
       ),
     );
   }
+
+  Widget buildDot(int index, BuildContext context) {
+    return Container(
+      height: 10,
+      width: _currentIndex == index ? 20 : 10,
+      margin: EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: _currentIndex == index ? Colors.green : Colors.grey,
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: userGuide(),
+  ));
 }

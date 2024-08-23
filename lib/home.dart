@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _pages = [
     const DashBoardHome(),
     const DropDown(),
-    const userGuide(),
+     userGuide(),
     const FeedBacks(),
     const Center(child: Text('Settings Page')), // Placeholder for settings or other options
   ];

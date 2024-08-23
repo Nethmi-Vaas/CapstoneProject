@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_2/dropD.dart';
 import 'package:flutter_application_2/feedbacks.dart';
 import 'package:flutter_application_2/userguide.dart';
@@ -10,51 +9,55 @@ class DashBoardHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: _buildDrawer(context),
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.black),
-          onPressed: () {
-            // Add drawer functionality if needed
-          },
+        leading: Builder(
+          builder: (context) => Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.menu, color: Colors.black),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              ),
+              Image.asset(
+                'assets/Logo/logo.png', // Replace with your logo path
+                width: 40,
+                height: 30,
+              ),
+            ],
+          ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: Icon(Icons.notifications, color: Colors.black),
-          ),
+
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/logo.png', // Replace with your logo path
-              width: 100,
-              height: 100,
-            ),
-            const SizedBox(height: 10),
-            _buildCarouselSlider(),
             const SizedBox(height: 20),
-            _buildOptionCard(
-              context,
-              'User Guide',
-              'assets/user_guide_image.png', // Replace with your image
-              const userGuide(),
-            ),
-            _buildOptionCard(
+            _buildSingleImage(), // Replaces the carousel slider with a single image
+            const SizedBox(height: 20),
+            _buildOptionButton(
               context,
               'Crop Selection',
-              'assets/crop_selection_image.png', // Replace with your image
+              'assets/crop_selection_image.png', // Replace with your image path
               const DropDown(),
             ),
-            _buildOptionCard(
+            _buildOptionButton(
               context,
-              'Feedbacks and Suggestions',
-              'assets/feedback_image.png', // Replace with your image
+              'User Guide',
+              'assets/user_guide_image.png', // Replace with your image path
+               userGuide(),
+            ),
+            _buildOptionButton(
+              context,
+              'Feedback',
+              'assets/feedback_image.png', // Replace with your image path
               const FeedBacks(),
             ),
           ],
@@ -63,75 +66,108 @@ class DashBoardHome extends StatelessWidget {
     );
   }
 
-  Widget _buildCarouselSlider() {
-    final List<String> imgList = [
-      'assets/banner1.png', // Replace with your images
-      'assets/banner2.png',
-      'assets/banner3.png',
-    ];
-
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: 150,
-        autoPlay: true,
-        enlargeCenterPage: true,
-        aspectRatio: 16 / 9,
-        viewportFraction: 0.8,
-      ),
-      items: imgList.map((item) => Container(
-        child: Center(
-          child: Image.asset(item, fit: BoxFit.cover, width: 1000),
-        ),
-      )).toList(),
+  Widget _buildSingleImage() {
+    return Image.asset(
+      'assets/New folder/Home_01.jpg', // Replace with your image path
+      width: double.infinity,
+      height: 400, // Adjust the height as needed
+      fit: BoxFit.cover,
     );
   }
 
-  Widget _buildOptionCard(
+  Widget _buildOptionButton(
       BuildContext context, String title, String imagePath, Widget page) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Color(0xFF8FB98B), // Adjust the color as per your design
-          borderRadius: BorderRadius.circular(20),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.black, backgroundColor: Color(0xFFE4F5E1), // Text and icon color
+          padding: const EdgeInsets.all(0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => page),
+          );
+        },
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage(imagePath),
-                    fit: BoxFit.cover,
-                  ),
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
             Expanded(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+              child: Center(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: CircleAvatar(
-                radius: 20,
-                backgroundColor: Color(0xFF6A8759),
-                child: Icon(Icons.add, color: Colors.white),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.white,
+            ),
+            child: Image.asset(
+              'assets/Logo/logo.png', // Replace with your logo path
+              width: 100,
+              height: 100,
+            ),
+          ),
+          _buildDrawerItem(context, Icons.home, 'Home', () {
+            Navigator.pop(context);
+          }),
+          _buildDrawerItem(context, Icons.grass, 'Crop Selection', () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const DropDown()));
+          }),
+          _buildDrawerItem(context, Icons.book, 'User Guide', () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) =>  userGuide()));
+          }),
+          _buildDrawerItem(context, Icons.feedback, 'Feedback and Suggestions',
+                  () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const FeedBacks()));
+              }),
+          _buildDrawerItem(context, Icons.privacy_tip, 'Privacy Policy', () {
+            // Implement Privacy Policy page navigation
+          }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDrawerItem(BuildContext context, IconData icon, String title,
+      VoidCallback onTap) {
+    return ListTile(
+      leading: Icon(icon, color: Colors.black),
+      title: Text(title),
+      onTap: onTap,
     );
   }
 }
