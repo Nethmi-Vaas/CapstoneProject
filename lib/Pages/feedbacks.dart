@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_2/widgets/appbar.dart';
+import 'package:flutter_application_2/widgets/drawer.dart';
 
 class FeedBacks extends StatefulWidget {
   const FeedBacks({Key? key});
@@ -102,19 +104,14 @@ class _FeedBacksState extends State<FeedBacks> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.black),
-          onPressed: () {},
-        ),
-        title: Image.asset(
-          'assets/Logo/logo.png', // Replace with your logo path
-          height: 40,
-        ),
-        centerTitle: true,
+      appBar: const CustomAppBar(
+        title: 'Feedbacks',
+        actions: [
+
+          SizedBox(width: 16),
+        ],
       ),
+      drawer: const CustomDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

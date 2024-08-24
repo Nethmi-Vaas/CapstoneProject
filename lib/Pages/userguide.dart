@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/widgets/appbar.dart';
+import 'package:flutter_application_2/widgets/drawer.dart';
 
 class userGuide extends StatefulWidget {
   @override
@@ -31,21 +33,14 @@ class _userGuideState extends State<userGuide> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.black),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-        ),
-        title: Image.asset(
-          'assets/Logo/logo.png', // Replace with your logo path
-          height: 40,
-        ),
-        centerTitle: true,
+      appBar: const CustomAppBar(
+        title: 'Users Guide',
+        actions: [
+
+          SizedBox(width: 16),
+        ],
       ),
+      drawer: const CustomDrawer(),
       body: Column(
         children: [
           Expanded(
