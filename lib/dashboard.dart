@@ -25,8 +25,8 @@ class DashBoardHome extends StatelessWidget {
               ),
               Image.asset(
                 'assets/Logo/logo.png', // Replace with your logo path
-                width: 40,
-                height: 30,
+                width: 70,
+                height: 100,
               ),
             ],
           ),
@@ -45,19 +45,20 @@ class DashBoardHome extends StatelessWidget {
             _buildOptionButton(
               context,
               'Crop Selection',
-              'assets/crop_selection_image.png', // Replace with your image path
+              'assets/icons/icon_02.jpg', // Replace with your image path
               const DropDown(),
+              
             ),
             _buildOptionButton(
               context,
               'User Guide',
-              'assets/user_guide_image.png', // Replace with your image path
+              'assets/icons/icon_03.jpg', // Replace with your image path
                userGuide(),
             ),
             _buildOptionButton(
               context,
-              'Feedback',
-              'assets/feedback_image.png', // Replace with your image path
+              'Feedbacks',
+              'assets/icons/icon_04.jpg', // Replace with your image path
               const FeedBacks(),
             ),
           ],
@@ -70,7 +71,8 @@ class DashBoardHome extends StatelessWidget {
     return Image.asset(
       'assets/New folder/Home_01.jpg', // Replace with your image path
       width: double.infinity,
-      height: 400, // Adjust the height as needed
+      height: 300,
+       // Adjust the height as needed
       fit: BoxFit.cover,
     );
   }

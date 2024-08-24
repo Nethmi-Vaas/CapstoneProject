@@ -83,7 +83,7 @@ class _FeedBacksState extends State<FeedBacks> {
             value: index,
             groupValue: selectedIndex,
             onChanged: (value) => handleCheckItemSelection(value!),
-            activeColor: const Color(0xFF16764B),
+            activeColor: const Color(0xFF1A5319),
           ),
           const SizedBox(width: 10.0),
           Text(
@@ -193,8 +193,8 @@ class _FeedBacksState extends State<FeedBacks> {
           ElevatedButton(
             onPressed: isSubmitting ? null : submitFeedback,
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF16764B), // Button color
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              backgroundColor: const Color(0xFF1A5319), // Button color
+              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 120.0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
