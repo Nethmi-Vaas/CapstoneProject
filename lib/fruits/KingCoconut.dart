@@ -5,73 +5,73 @@ class KingCoco extends StatelessWidget {
 
   final List<Map<String, dynamic>> gridData = [
     {
-      'image': 'assets/spacing.PNG',
+      'image': 'assets/Details/image_05.jpg',
       'text1': 'Spacing',
       'text2': '7.5*7.5m',
       'color': Colors.white,
     },
     {
-      'image': 'assets/v2.png',
+      'image': 'assets/Details/v2.png',
       'text1': 'Temperature',
       'text2': '20-32°C',
       'color': Colors.white,
     },
     {
-      'image': 'assets/v3.png',
+      'image': 'assets/Details/v3.png',
       'text1': 'Germination',
       'text2': '60-220 days',
       'color': Colors.white,
     },
     {
-      'image': 'assets/v4.png',
+      'image': 'assets/Details/v4.png',
       'text1': 'Sprout to Harvest',
       'text2': '7-8 months',
       'color': Colors.white,
     },
     {
-      'image': 'assets/phrange.jpg',
+      'image': 'assets/Details/phrange.jpg',
       'text1': 'Soil PH Range',
       'text2': '5.5-7.5',
       'color': Colors.white,
     },
     {
-      'image': 'assets/v7.png',
+      'image': 'assets/Details/v7.png',
       'text1': 'Water',
       'text2': '25-30 gallons/week',
       'color': Colors.white,
     },
     {
-      'image': 'assets/leafrot.jpg',
+      'image': 'assets/Details/leafrot.jpg',
       'text1': 'Diseases',
       'text2': 'Leaf rot',
       'color': Colors.white,
     },
     {
-      'image': 'assets/BudRot.jpg',
+      'image': 'assets/Details/BudRot.jpg',
       'text1': 'Diseases',
       'text2': 'Bud Rot',
       'color': Colors.white,
     },
     {
-      'image': 'assets/Gray.jpg',
+      'image': 'assets/Details/Gray.jpg',
       'text1': 'Diseases',
       'text2': 'Gray Leaf Spot',
       'color': Colors.white,
     },
     {
-      'image': 'assets/MuriateofPot.jpg',
+      'image': 'assets/Details/MuriateofPot.jpg',
       'text1': 'Fertilizers',
       'text2': 'Muriate of Potash',
       'color': Colors.white,
     },
     {
-      'image': 'assets/v11.png',
+      'image': 'assets/Details/v11.png',
       'text1': 'Fertilizers',
       'text2': 'Urea',
       'color': Colors.white,
     },
     {
-      'image': 'assets/DAP.jpg',
+      'image': 'assets/Details/DAP.jpg',
       'text1': 'Fertilizers',
       'text2': 'DAP',
       'color': Colors.white,
@@ -87,8 +87,8 @@ class KingCoco extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: 140,
-            color: const Color(0xFF66B68B),
+            height: 100,
+            color: Color.fromRGBO(36, 77, 55, 1),
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -101,13 +101,13 @@ class KingCoco extends StatelessWidget {
                     const Text(
                       'King Coconut',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Image.asset('assets/Details/KingCo.png', width: 40, height: 40),
+                    Image.asset('assets/Details/KingCo.png', width: 70, height: 70),
                   ],
                 ),
               ),

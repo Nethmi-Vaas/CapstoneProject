@@ -191,7 +191,7 @@ class _FeedBacksState extends State<FeedBacks> {
             onPressed: isSubmitting ? null : submitFeedback,
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF1A5319), // Button color
-              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 120.0),
+              padding: const EdgeInsets.symmetric(vertical: 13.0, horizontal: 190.0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
