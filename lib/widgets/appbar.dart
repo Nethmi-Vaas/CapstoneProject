@@ -23,22 +23,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           Scaffold.of(context).openDrawer();
         },
       ),
-      title: Row(
-        children: [
-          if (leadingIcon != null) leadingIcon!,
-          const SizedBox(width: 8),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const Spacer(),
-          if (actions != null) ...actions!,
-        ],
-      ),
+     title: Row(
+  children: [
+    if (leadingIcon != null) leadingIcon!,
+    const SizedBox(width: 8),
+    Image.asset(
+      'assets/Logo/logo.png', // Replace with your image path
+      width: 250, // Adjust width as needed
+      height: 250, // Adjust height as needed
+    ),
+    const Spacer(),
+    if (actions != null) ...actions!,
+  ],
+),
+
     );
   }
 

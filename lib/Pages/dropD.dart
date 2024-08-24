@@ -60,7 +60,7 @@ class _DropDownState extends State<DropDown> {
     return Image.asset(
       'assets/New folder/Home_01.jpg', // Replace with your image path
       width: double.infinity,
-      height:200, // Adjust the height as needed
+      height:300, // Adjust the height as needed
       fit: BoxFit.cover,
     );
   }
