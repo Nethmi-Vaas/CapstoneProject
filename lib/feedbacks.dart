@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -41,8 +40,8 @@ class _FeedBacksState extends State<FeedBacks> {
         'type': selectedIndex == 0
             ? 'Crops Selection'
             : selectedIndex == 1
-                ? 'Price Rates'
-                : 'Performances of the Application',
+            ? 'Price Rates'
+            : 'Performances of the Application',
         'timestamp': DateTime.now(),
       });
       // Reset form
@@ -91,7 +90,7 @@ class _FeedBacksState extends State<FeedBacks> {
             title,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 0, 0, 0),
+              color: Colors.black,
             ),
           ),
         ],
@@ -102,57 +101,42 @@ class _FeedBacksState extends State<FeedBacks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/applogo.png',
-                  alignment: Alignment.topLeft,
-                ),
-              ],
-            ),
-          ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Colors.black),
+          onPressed: () {},
         ),
+        title: Image.asset(
+          'assets/Logo/logo.png', // Replace with your logo path
+          height: 40,
+        ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 8.0),
-                const Text(
-                  "Feedbacks and Suggestions",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize:23,
-                  ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(height: 8.0),
+              const Text(
+                "Please Select the type of Feedback.",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-                const SizedBox(height: 8.0),
-                const Text(
-                  "Please Select the type of feedback",
-                  style: TextStyle(color: Color(0xffc5c5c5)),
-                ),
-                const SizedBox(height: 10.0),
-                buildCheckItem("Crops Selection", 0),
-                buildCheckItem("Price Rates", 1),
-                buildCheckItem("Performances of the Application", 2),
-                const SizedBox(height: 10.0),
-                selectedIndex != -1 ? buildFeedbackForm() : Container(),
-              ],
-            ),
+              ),
+              const SizedBox(height: 15.0),
+              buildCheckItem("Crops Selection", 0),
+              buildCheckItem("Price Rates", 1),
+              buildCheckItem("Performances of the Application", 2),
+              const SizedBox(height: 20.0),
+              selectedIndex != -1 ? buildFeedbackForm() : Container(),
+            ],
           ),
         ),
       ),
@@ -171,65 +155,60 @@ class _FeedBacksState extends State<FeedBacks> {
         children: [
           const Text(
             'Feedbacks Form:',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8.0),
           TextFormField(
             controller: nameController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               hintText: 'Enter your Name here',
-              border: OutlineInputBorder(),
+              hintStyle: TextStyle(color: Colors.grey.shade600),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(color: Colors.grey.shade300),
+              ),
+              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              filled: true,
+              fillColor: Colors.white,
             ),
             maxLines: 1,
           ),
           const SizedBox(height: 8.0),
           TextFormField(
             controller: feedbackController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               hintText: 'Enter your feedback here',
-              border: OutlineInputBorder(),
+              hintStyle: TextStyle(color: Colors.grey.shade600),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(color: Colors.grey.shade300),
+              ),
+              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              filled: true,
+              fillColor: Colors.white,
             ),
             maxLines: 3,
           ),
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 10.0),
           ElevatedButton(
             onPressed: isSubmitting ? null : submitFeedback,
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF16764B), // Button color
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                gradient: const LinearGradient(
-                  colors: [
-                    Color(0xFF16764B),
-                    Color(0xFFF8B23C),
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-              ),
-              child: Center(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                  child: isSubmitting
-                      ? const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                        )
-                      : const Text(
-                          'Submit',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                ),
+            child: isSubmitting
+                ? const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            )
+                : const Text(
+              'Submit',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
