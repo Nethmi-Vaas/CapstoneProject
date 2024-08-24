@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Pages/dashboard.dart';
 
 import '../Pages/dropD.dart';
 import '../Pages/feedbacks.dart';
@@ -26,7 +27,8 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           _buildDrawerItem(context, Icons.home, 'Home', () {
-            Navigator.pop(context);
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const DashBoardHome()));
           }),
           _buildDrawerItem(context, Icons.grass, 'Crop Selection', () {
             Navigator.push(context,
