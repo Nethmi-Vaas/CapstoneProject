@@ -32,7 +32,7 @@ class _userGuideState extends State<userGuide> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 249, 247, 247),
       appBar: const CustomAppBar(
         title: 'Users Guide',
         actions: [
