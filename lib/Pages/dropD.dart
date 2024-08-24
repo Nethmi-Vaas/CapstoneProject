@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/userguide.dart';
+import 'package:flutter_application_2/Pages/userguide.dart';
 import 'package:flutter_application_2/viewpage.dart';
+import 'package:flutter_application_2/widgets/appbar.dart';
+import 'package:flutter_application_2/widgets/drawer.dart';
 
 import 'feedbacks.dart';
 
@@ -25,31 +27,14 @@ class _DropDownState extends State<DropDown> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: _buildDrawer(context),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: Builder(
-          builder: (context) => Row(
-            children: [
-              IconButton(
-                icon: Icon(Icons.menu, color: Colors.black),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-              ),
-              Image.asset(
-                'assets/Logo/logo.png', // Replace with your logo path
-                width: 40,
-                height: 40,
-              ),
-            ],
-          ),
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(color: Colors.white),
-        ),
+      appBar: const CustomAppBar(
+        title: 'Crop Selection',
+        actions: [
+
+          SizedBox(width: 16),
+        ],
       ),
+      drawer: const CustomDrawer(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -73,9 +58,9 @@ class _DropDownState extends State<DropDown> {
 
   Widget _buildImageHeader() {
     return Image.asset(
-      'C:src\flutter_application_2assetsCrop selectionimage_04.jpg', // Replace with your image path
+      'assets/New folder/Home_01.jpg', // Replace with your image path
       width: double.infinity,
-      height:50, // Adjust the height as needed
+      height:200, // Adjust the height as needed
       fit: BoxFit.cover,
     );
   }
@@ -313,7 +298,7 @@ class _DropDownState extends State<DropDown> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey, width: 1),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: child,
       ),
@@ -322,7 +307,7 @@ class _DropDownState extends State<DropDown> {
 
   Widget _buildSubmitButton(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(32.0),
       child: ElevatedButton(
         onPressed: () {
           if (selectedMonth != null &&

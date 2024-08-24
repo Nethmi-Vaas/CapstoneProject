@@ -3,6 +3,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import 'fruits/KingCoconut.dart';
+
 class ViewPage extends StatefulWidget {
   const ViewPage({
     super.key,
@@ -43,25 +45,21 @@ class _ViewPageState extends State<ViewPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Row(
+        title: Row(
           children: [
-            IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+            const SizedBox(width: 8),
+            const Text(
+              'Select',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            Image.asset(
-              'assets/Logo/logo.png', // Replace with your logo path
-              width: 80,
-              height: 40,
-            ),
+            const Spacer(),
           ],
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(color: Colors.white),
         ),
       ),
       body: SingleChildScrollView(
@@ -118,7 +116,6 @@ class _ViewPageState extends State<ViewPage> {
                           ),
                         ),
                         const SizedBox(height: 16),
-
                         const SizedBox(height: 16),
                         ListView.builder(
                           shrinkWrap: true,
@@ -130,7 +127,23 @@ class _ViewPageState extends State<ViewPage> {
                               child: InkWell(
                                 onTap: () {
                                   final String crop = cropTypeItems[index].name.toString();
-                                  // Navigation logic here...
+
+                                  if (crop == 'King coconut') {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => KingCoco(),
+                                      ),
+                                    );
+                                  } else if (crop == 'Crop B') {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => KingCoco(),
+                                      ),
+                                    );
+                                  }
+                                  // Add more conditions for other crops
                                 },
                                 child: ListTile(
                                   title: Text(
@@ -152,7 +165,6 @@ class _ViewPageState extends State<ViewPage> {
                                         progressColor: _colors[index % _colors.length],
                                       ),
                                       const SizedBox(width: 10),
-                                      const SizedBox(width: 10),
                                       Container(
                                         padding: const EdgeInsets.all(8.0),
                                         decoration: BoxDecoration(
@@ -163,7 +175,8 @@ class _ViewPageState extends State<ViewPage> {
                                           Icons.arrow_forward,
                                           color: Colors.green,
                                         ),
-                                      ),  ],
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),

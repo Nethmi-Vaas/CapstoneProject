@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:flutter_application_2/dropD.dart';
-import 'package:flutter_application_2/feedbacks.dart';
-import 'package:flutter_application_2/userguide.dart';
+import 'package:flutter_application_2/Pages/dropD.dart';
 
-import 'dashboard.dart';
+import 'package:flutter_application_2/Pages/userguide.dart';
+
+import 'Pages/dashboard.dart';
+import 'Pages/feedbacks.dart';
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,7 +23,7 @@ class _HomeState extends State<Home> {
     const DropDown(),
      userGuide(),
     const FeedBacks(),
-    const Center(child: Text('Settings Page')), // Placeholder for settings or other options
+     // Placeholder for settings or other options
   ];
 
   @override
@@ -35,7 +37,7 @@ class _HomeState extends State<Home> {
         items: [
           SalomonBottomBarItem(
             icon: const Icon(Icons.home),
-            title: const Text("Home"),
+            title: const Text("Dashboard"),
             selectedColor: Colors.green,
           ),
           SalomonBottomBarItem(
@@ -53,11 +55,7 @@ class _HomeState extends State<Home> {
             title: const Text("Feedback"),
             selectedColor: Colors.green,
           ),
-          SalomonBottomBarItem(
-            icon: const Icon(Icons.settings),
-            title: const Text("Settings"),
-            selectedColor: Colors.green,
-          ),
+
         ],
       ),
     );
