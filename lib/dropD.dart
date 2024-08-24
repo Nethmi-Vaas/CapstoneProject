@@ -73,9 +73,9 @@ class _DropDownState extends State<DropDown> {
 
   Widget _buildImageHeader() {
     return Image.asset(
-      'assets/New folder/Home_01.jpg', // Replace with your image path
+      'C:src\flutter_application_2assetsCrop selectionimage_04.jpg', // Replace with your image path
       width: double.infinity,
-      height: 400, // Adjust the height as needed
+      height:50, // Adjust the height as needed
       fit: BoxFit.cover,
     );
   }
@@ -349,10 +349,10 @@ class _DropDownState extends State<DropDown> {
               borderRadius: BorderRadius.circular(8.0),
             ),
           ),
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF1A5319)),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 9.0),
           child: const Text(
             'Submit',
             style: TextStyle(
