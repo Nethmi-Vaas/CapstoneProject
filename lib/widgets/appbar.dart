@@ -29,8 +29,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     const SizedBox(width: 8),
     Image.asset(
       'assets/Logo/logo.png', // Replace with your image path
-      width: 250, // Adjust width as needed
-      height: 250, // Adjust height as needed
+      width: 180, // Adjust width as needed
+      height: 230, // Adjust height as needed
     ),
     const Spacer(),
     if (actions != null) ...actions!,
