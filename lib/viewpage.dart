@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Pages/dropD.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import 'fruits/KingCoconut.dart';
@@ -47,10 +48,17 @@ class _ViewPageState extends State<ViewPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Row(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const DropDown()));
+          },
+        ),
+        title: const Row(
           children: [
-            const SizedBox(width: 8),
-            const Text(
+            SizedBox(width: 8),
+            Text(
               '',
               style: TextStyle(
                 color: Colors.black,
@@ -76,7 +84,11 @@ class _ViewPageState extends State<ViewPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.grey[350],),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[350],
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: StreamBuilder<QuerySnapshot>(
@@ -98,13 +110,14 @@ class _ViewPageState extends State<ViewPage> {
                         );
                       } else {
                         final selectCropTypes = snapshot.data?.docs ?? [];
-                        List<CropType> cropTypeItems = selectCropTypes.map((cropType) {
+                        List<CropType> cropTypeItems =
+                            selectCropTypes.map((cropType) {
                           return CropType(
                             name: cropType['C_name'] ?? "",
                             percentage: cropType['Percentage'] ?? 0,
                           );
                         }).toList();
-                  
+
                         return Column(
                           children: [
                             SizedBox(
@@ -119,18 +132,19 @@ class _ViewPageState extends State<ViewPage> {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            const SizedBox(height: 16),
                             ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: cropTypeItems.length,
                               itemBuilder: (context, index) {
                                 return Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      final String crop = cropTypeItems[index].name.toString();
-                  
+                                      final String crop =
+                                          cropTypeItems[index].name.toString();
+
                                       if (crop == 'King coconut') {
                                         Navigator.push(
                                           context,
@@ -158,21 +172,30 @@ class _ViewPageState extends State<ViewPage> {
                                         ),
                                       ),
                                       subtitle: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           LinearPercentIndicator(
-                                            width: MediaQuery.of(context).size.width * 0.6,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.6,
                                             lineHeight: 20.0,
-                                            percent: cropTypeItems[index].percentage / 100,
+                                            percent: cropTypeItems[index]
+                                                    .percentage /
+                                                100,
                                             backgroundColor: Colors.grey[300],
-                                            progressColor: _colors[index % _colors.length],
+                                            progressColor:
+                                                _colors[index % _colors.length],
                                           ),
                                           const SizedBox(width: 10),
                                           Container(
                                             padding: const EdgeInsets.all(8.0),
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              border: Border.all(color: Colors.green, width: 2.0),
+                                              border: Border.all(
+                                                  color: Colors.green,
+                                                  width: 2.0),
                                             ),
                                             child: const Icon(
                                               Icons.arrow_forward,
