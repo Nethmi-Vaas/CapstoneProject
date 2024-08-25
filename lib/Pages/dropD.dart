@@ -42,13 +42,13 @@ class _DropDownState extends State<DropDown> {
             _buildImageHeader(),
             const SizedBox(height: 20),
             _buildMonthDropdown(),
-            const SizedBox(height: 20),
+            const SizedBox(height:10),
             _buildDistrictDropdown(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             if (showAreaDropdown) _buildAreaDropdown(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             if (showCropDropdown) _buildselectcroptypeDropdown(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
             _buildSubmitButton(context),
           ],
         ),
@@ -58,9 +58,9 @@ class _DropDownState extends State<DropDown> {
 
   Widget _buildImageHeader() {
     return Image.asset(
-      'assets/New folder/Home_01.jpg', // Replace with your image path
+      'assets/Crop selection/image_04.jpg', // Replace with your image path
       width: double.infinity,
-      height:300, // Adjust the height as needed
+      height:200, // Adjust the height as needed
       fit: BoxFit.cover,
     );
   }
@@ -336,7 +336,9 @@ class _DropDownState extends State<DropDown> {
           ),
           backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF1A5319)),
         ),
+        
         child: Padding(
+          
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 9.0),
           child: const Text(
             'Submit',
