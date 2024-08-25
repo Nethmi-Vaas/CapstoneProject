@@ -5,70 +5,70 @@ class Avocado extends StatelessWidget {
 
   final List<Map<String, dynamic>> gridData = [
     {
-      'image': 'assets/spacing.PNG',
-      'text1': 'Spacing ',
+      'image': 'assets/Details/image_05.jpg',
+      'text1': 'Spacing',
       'text2': '8*8m',
-      'color': const Color(0xFFD9F5C5),
+      'color': Colors.white,
     },
     {
-      'image': 'assets/v2.png',
+      'image': 'assets/Details/v2.png',
       'text1': 'Temperature',
-      'text2': '180-250C',
-      'color': const Color(0xFFD9F5C5),
+      'text2': '18-25°C',
+      'color': Colors.white,
     },
     {
-      'image': 'assets/v3.png',
-      'text1': 'Germination ',
+      'image': 'assets/Details/v3.png',
+      'text1': 'Germination',
       'text2': '6-8 weeks',
-      'color': const Color(0xFFD9F5C5),
+      'color': Colors.white,
     },
     {
-      'image': 'assets/v4.png',
-      'text1': 'Sprout to Harvest ',
+      'image': 'assets/Details/v4.png',
+      'text1': 'Sprout to Harvest',
       'text2': '4-6 weeks',
-      'color': const Color(0xFFD0EC94),
+      'color': Colors.white,
     },
     {
-      'image': 'assets/phrange.jpg',
+      'image': 'assets/Details/phrange.jpg',
       'text1': 'Soil PH Range',
       'text2': '5 - 7',
-      'color': const Color(0xFFD0EC94),
+      'color': Colors.white,
     },
     {
-      'image': 'assets/v7.png',
+      'image': 'assets/Details/v7.png',
       'text1': 'Water',
-      'text2': '2 gallons',
-      'color': const Color(0xFFD0EC94),
+      'text2': '2 gallons/week',
+      'color': Colors.white,
     },
     {
-      'image': 'assets/rootrot.jpeg',
+      'image': 'assets/Details/rootrot.jpeg',
       'text1': 'Diseases',
       'text2': 'Root rot',
-      'color': const Color(0xFFFCDCA6),
+      'color': Colors.white,
     },
     {
-      'image': 'assets/canker.jpeg',
-      'text1': 'Diseases ',
+      'image': 'assets/Details/canker.jpeg',
+      'text1': 'Diseases',
       'text2': 'Canker',
-      'color': const Color(0xFFFCDCA6),
+      'color': Colors.white,
     },
     {
-      'image': 'assets/scab.jpeg',
+      'image': 'assets/Details/scab.jpeg',
       'text1': 'Diseases',
       'text2': 'Scab',
-      'color': const Color(0xFFFCDCA6),
+      'color': Colors.white,
     },
     {
-      'image': 'assets/Citrus-Fertilizer.jpg',
+      'image': 'assets/Details/Citrus-Fertilizer.jpg',
       'text1': 'Fertilizers',
-      'text2': 'Citrus tree ',
-      'color': const Color(0xFFF6A33E),
+      'text2': 'Citrus tree',
+      'color': Colors.white,
     },
     {
-      'image': 'assets/chickenM.jpeg',
+      'image': 'assets/Details/chickenM.jpeg',
       'text1': 'Manure',
       'text2': 'Chicken manure',
-      'color': const Color(0xFFF6A33E),
+      'color': Colors.white,
     },
   ];
 
@@ -76,66 +76,53 @@ class Avocado extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF16764B), Color(0xFFF8B23C)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(50, 1, 50, 0.1),
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/applogo.png',
-                  alignment: Alignment.topLeft,
-                ),
-              ],
-            ),
-          ),
+        
         ),
-      ),
-      body: Column(
-        children: [
+          body: Column(children:[
           Container(
-            color: const Color(0xFF66B68B),
-            height: 70,
-            width: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Avocado',
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+            height: 80,
+            color: Color.fromRGBO(36, 77, 55, 1),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+                    const SizedBox(width: 10),
+                    const Text(
+                      'Avocado',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Image.asset('assets/Details/avo1.png', width: 70, height: 70),
+                  ],
                 ),
-                const SizedBox(width: 10),
-                Image.asset(
-                  'assets/avo1.png',
-                  width: 100,
-                  height: 100,
-                ),
-                const SizedBox(height: 20.0),
-              ],
+              ),
             ),
           ),
           Expanded(
-            child: GridView.count(
-              crossAxisCount: 3,
-              children: List.generate(gridData.length, (index) {
-                return GridItem(
-                  image: gridData[index]['image'],
-                  text1: gridData[index]['text1'],
-                  text2: gridData[index]['text2'],
-                  color: gridData[index]['color'],
-                );
-              }),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: 1.2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                children: List.generate(gridData.length, (index) {
+                  return GridItem(
+                    image: gridData[index]['image'],
+                    text1: gridData[index]['text1'],
+                    text2: gridData[index]['text2'],
+                    color: gridData[index]['color'],
+                  );
+                }),
+              ),
             ),
           ),
         ],
@@ -161,54 +148,51 @@ class GridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(8.0),
-      width: 40,
-      height: 40,
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black.withOpacity(0.1),
             spreadRadius: 2,
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
-          BoxShadow(
-            color: Colors.white.withOpacity(0.5),
-            spreadRadius: -2,
-            blurRadius: 4,
-            offset: const Offset(0, -2),
-          ),
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            text1,
-            style: const TextStyle(
-              fontSize: 11,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              image,
+              width: 60,
+              height: 60,
+              alignment: Alignment.center,
             ),
-          ),
-          Text(
-            text2,
-            style: const TextStyle(
-              fontSize: 10,
-              color: Colors.black,
+            const SizedBox(height: 8),
+            Text(
+              text1,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
-          ),
-          const SizedBox(height: 5),
-          Image.asset(
-            image,
-            width: 60,
-            height: 60,
-            alignment: Alignment.center,
-          ),
-        ],
+            const SizedBox(height: 4),
+            Text(
+              text2,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 10,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

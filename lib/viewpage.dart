@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Pages/Avocado.dart';
 import 'package:flutter_application_2/Pages/dropD.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -152,11 +153,11 @@ class _ViewPageState extends State<ViewPage> {
                                             builder: (context) => KingCoco(),
                                           ),
                                         );
-                                      } else if (crop == 'Crop B') {
+                                      } else if (crop == 'Avocado') {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => KingCoco(),
+                                            builder: (context) => Avocado(),
                                           ),
                                         );
                                       }

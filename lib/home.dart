@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
             selectedColor: Colors.green,
           ),
           SalomonBottomBarItem(
-            icon: const Icon(Icons.filter_alt),
+            icon: const Icon(Icons.grass),
             title: const Text("Crop Selection"),
             selectedColor: Colors.green,
           ),
@@ -50,9 +50,10 @@ class _HomeState extends State<Home> {
             title: const Text("User Guide"),
             selectedColor: Colors.green,
           ),
+          
           SalomonBottomBarItem(
             icon: const Icon(Icons.feedback),
-            title: const Text("Feedback"),
+            title: const Text("Feedbacks"),
             selectedColor: Colors.green,
           ),
 

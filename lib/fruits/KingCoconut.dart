@@ -87,7 +87,7 @@ class KingCoco extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: 100,
+            height: 80,
             color: Color.fromRGBO(36, 77, 55, 1),
             child: Center(
               child: Padding(
