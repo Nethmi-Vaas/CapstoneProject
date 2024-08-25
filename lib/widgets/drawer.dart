@@ -34,13 +34,9 @@ class CustomDrawer extends StatelessWidget {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const DropDown()));
           }),
-          _buildDrawerItem(context, Icons.book, 'User Guide', () {
+          _buildDrawerItem(context, Icons.menu_book, 'User Guide', () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) =>  userGuide()));
-          }),
-          _buildDrawerItem(context, Icons.feedback, 'Feedback and Suggestions', () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const FeedBacks()));
           }),
           _buildDrawerItem(context, Icons.privacy_tip, 'Privacy Policy', () {
             // Implement Privacy Policy page navigation
@@ -48,6 +44,11 @@ class CustomDrawer extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const PrivacyPolicy()));
             //PrivacyPolicy
           }),
+          _buildDrawerItem(context, Icons.feedback, 'Feedback and Suggestions', () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const FeedBacks()));
+          }),
+          
         ],
       ),
     );

@@ -60,13 +60,13 @@ class _userGuideState extends State<userGuide> {
                     children: [
                       Image.asset(
                         _pages[index]['image']!,
-                        height: 250,
+                        height: 220,
                       ),
                       const SizedBox(height: 20),
                       Text(
                         _pages[index]['title']!,
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -76,7 +76,7 @@ class _userGuideState extends State<userGuide> {
                       Text(
                         _pages[index]['subtitle']!,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 15,
                           color: Colors.black54,
                         ),
                         textAlign: TextAlign.center,
