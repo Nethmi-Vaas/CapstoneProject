@@ -5,73 +5,73 @@ class Brinjal extends StatelessWidget {
 
   final List<Map<String, dynamic>> gridData = [
     {
-      'image': 'assets/spacing.PNG',
+      'image': 'assets/Details/image_05.jpg',
       'text1': 'Spacing ',
       'text2': '1/Square',
       'color': const Color(0xFFD9F5C5),
     },
     {
-      'image': 'assets/v2.png',
+      'image': 'assets/Details/v2.png',
       'text1': 'Temperature',
       'text2': '13-21C',
       'color': const Color(0xFFD9F5C5),
     },
     {
-      'image': 'assets/v3.png',
+      'image': 'assets/Details/v3.png',
       'text1': 'Germination ',
       'text2': '7-14 days',
       'color': const Color(0xFFD9F5C5),
     },
     {
-      'image': 'assets/v4.png',
+      'image': 'assets/Details/v4.png',
       'text1': 'Sprout to Harvest ',
       'text2': '75-90 days',
       'color': const Color(0xFFD0EC94),
     },
     {
-      'image': 'assets/phrange.jpg',
+      'image': 'assets/Details/phrange.jpg',
       'text1': 'Soil PH Range',
       'text2': '5.5-5.8',
       'color': const Color(0xFFD0EC94),
     },
     {
-      'image': 'assets/v7.png',
+      'image': 'assets/Details/v7.png',
       'text1': 'Water',
       'text2': ' 1 in/week',
       'color': const Color(0xFFD0EC94),
     },
     {
-      'image': 'assets/phomopsisblight.jpg',
+      'image': 'assets/Details/phomopsisblight.jpg',
       'text1': 'Diseases',
       'text2': 'PhomopsisBlight',
       'color': const Color(0xFFFCDCA6),
     },
     {
-      'image': 'assets/leafspot.jpg',
+      'image': 'assets/Details/leafspot.jpg',
       'text1': 'Diseases ',
       'text2': 'LeafSpot',
       'color': const Color(0xFFFCDCA6),
     },
     {
-      'image': 'assets/alternaria_.jpg',
+      'image': 'assets/Details/alternaria_.jpg',
       'text1': 'Diseases',
       'text2': 'Alternaria',
       'color': const Color(0xFFFCDCA6),
     },
     {
-      'image': 'assets/TSP.jpg',
+      'image': 'assets/Details/TSP.jpg',
       'text1': 'Fertilizers',
       'text2': 'Tsp ',
       'color': const Color(0xFFF6A33E),
     },
     {
-      'image': 'assets/cattlecompost.jpg',
+      'image': 'assets/Details/cattlecompost.jpg',
       'text1': 'Manure',
       'text2': 'Cattle Compost',
       'color': const Color(0xFFF6A33E),
     },
     {
-      'image': 'assets/v11.png',
+      'image': 'assets/Details/v11.png',
       'text1': 'Fertilizers',
       'text2': 'Urea',
       'color': const Color(0xFFF6A33E),
@@ -113,7 +113,7 @@ class Brinjal extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'Brinjal/Egg Plant',
+                  'Brinjal/Details/Egg Plant',
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: 20,
@@ -123,7 +123,7 @@ class Brinjal extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Image.asset(
-                  'assets/Brinjal.png',
+                  'assets/Details/Brinjal.png',
                   width: 100,
                   height: 100,
                 ),

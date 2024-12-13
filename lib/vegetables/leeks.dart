@@ -7,43 +7,43 @@ class leeks extends StatelessWidget {
 
   final List<Map<String, dynamic>> gridData = [
     {
-      'image': 'assets/spacing.PNG',
+      'image': 'assets/Details/image_05.jpg',
       'text1': 'Spacing ',
       'text2': '4/Square',
       'color': const Color(0xFFD9F5C5),
     },
     {
-      'image': 'assets/v2.png',
+      'image': 'assets/Details/v2.png',
       'text1': 'Temperature',
       'text2': '20 - 25 C',
       'color': const Color(0xFFD9F5C5),
     },
     {
-      'image': 'assets/v3.png',
+      'image': 'assets/Details/v3.png',
       'text1': 'Germination ',
       'text2': '10 - 14 days',
       'color': const Color(0xFFD9F5C5),
     },
     {
-      'image': 'assets/v4.png',
+      'image': 'assets/Details/v4.png',
       'text1': 'Sprout to Harvest ',
       'text2': '120 - 170 days ',
       'color': const Color(0xFFD0EC94),
     },
     {
-      'image': 'assets/phrange.jpg',
+      'image': 'assets/Details/phrange.jpg',
       'text1': 'Soil PH Range',
       'text2': '5.6-7.5',
       'color': const Color(0xFFD0EC94),
     },
     {
-      'image': 'assets/v7.png',
+      'image': 'assets/Details/v7.png',
       'text1': 'Water',
       'text2': ' 1 in/week',
       'color': const Color(0xFFD0EC94),
     },
     {
-      'image': 'assets/whiterot.jpeg',
+      'image': 'assets/Details/whiterot.jpeg',
       'text1': 'Diseases',
       'text2': 'White rot',
       'color': const Color(0xFFFCDCA6),
@@ -55,13 +55,13 @@ class leeks extends StatelessWidget {
       'color': const Color(0xFFFCDCA6),
     },
     {
-      'image': 'assets/v11.png',
+      'image': 'assets/Details/v11.png',
       'text1': 'Manure ',
       'text2': 'Urea',
       'color': const Color(0xFFF6A33E),
     },
     {
-      'image': 'assets/pro.jpeg',
+      'image': 'assets/Details/pro.jpeg',
       'text1': 'Fertilizers',
       'text2': 'Profenophos ',
       'color': const Color(0xFFF6A33E),
@@ -113,7 +113,7 @@ class leeks extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Image.asset(
-                  'assets/leeks.png',
+                  'assets/Details/leeks.png',
                   width: 100,
                   height: 100,
                 ),
