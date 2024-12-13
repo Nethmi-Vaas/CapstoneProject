@@ -3,6 +3,18 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/Pages/Avocado.dart';
 import 'package:flutter_application_2/Pages/dropD.dart';
+import 'package:flutter_application_2/fruits/Grapes.dart';
+import 'package:flutter_application_2/fruits/Papaya.dart';
+import 'package:flutter_application_2/fruits/Pineapple.dart';
+import 'package:flutter_application_2/grains/Cowpea.dart';
+import 'package:flutter_application_2/grains/GreenGram.dart';
+import 'package:flutter_application_2/vegetables/Brinjal.dart';
+import 'package:flutter_application_2/vegetables/Cabbage.dart';
+import 'package:flutter_application_2/vegetables/Carrots.dart';
+import 'package:flutter_application_2/vegetables/Gchillie.dart';
+import 'package:flutter_application_2/vegetables/Potatoes.dart';
+import 'package:flutter_application_2/vegetables/Pumpkin.dart';
+import 'package:flutter_application_2/vegetables/leeks.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import 'fruits/KingCoconut.dart';
@@ -161,7 +173,102 @@ class _ViewPageState extends State<ViewPage> {
                                           ),
                                         );
                                       }
-                                      // Add more conditions for other crops
+                                      else if (crop == 'Grapes') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Grapes(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Papaya') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Papaya(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Pineapple') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Pineapple(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Cowpea') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Cowpea(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Green Gram') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => GreenGram(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Carrot') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Carrot(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Brinjal') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Brinjal(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Cabbage') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Cabbage(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Green Chill') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Gchillie(),
+                                          ),
+                                        );
+                                      }else if (crop == 'Leeks') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => leeks(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Potato') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Potato(),
+                                          ),
+                                        );
+                                      }
+                                      else if (crop == 'Pumpkin') {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Pumpkin(),
+                                          ),
+                                        );
+                                      }
+                                      
                                     },
                                     child: ListTile(
                                       title: Text(
