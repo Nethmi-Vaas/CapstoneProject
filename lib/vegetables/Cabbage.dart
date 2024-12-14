@@ -5,73 +5,73 @@ class Cabbage extends StatelessWidget {
 
   final List<Map<String, dynamic>> gridData = [
     {
-      'image': 'assets/spacing.PNG',
+      'image': 'assets/Details/image_05.jpg',
       'text1': 'Spacing ',
       'text2': '1/Square',
       'color': const Color(0xFFD9F5C5),
     },
     {
-      'image': 'assets/v2.png',
+      'image': 'assets/Details/v2.png',
       'text1': 'Temperature',
       'text2': '60-65 F',
       'color': const Color(0xFFD9F5C5),
     },
     {
-      'image': 'assets/v3.png',
+      'image': 'assets/Details/v3.png',
       'text1': 'Germination ',
       'text2': '5 - 8 days',
       'color': const Color(0xFFD9F5C5),
     },
     {
-      'image': 'assets/v4.png',
+      'image': 'assets/Details/v4.png',
       'text1': 'Sprout to Harvest ',
       'text2': '60 - 105 days',
       'color': const Color(0xFFD0EC94),
     },
     {
-      'image': 'assets/phrange.jpg',
+      'image': 'assets/Details/phrange.jpg',
       'text1': 'Soil PH Range',
       'text2': '6-6.5',
       'color': const Color(0xFFD0EC94),
     },
     {
-      'image': 'assets/v7.png',
+      'image': 'assets/Details/v7.png',
       'text1': 'Water',
       'text2': ' 1 in/week',
       'color': const Color(0xFFD0EC94),
     },
     {
-      'image': 'assets/blakrot.jpeg',
+      'image': 'assets/Details/blakrot.jpeg',
       'text1': 'Diseases',
       'text2': 'Black rot',
       'color': const Color(0xFFFCDCA6),
     },
     {
-      'image': 'assets/whiterust.jpeg',
+      'image': 'assets/Details/whiterust.jpeg',
       'text1': 'Diseases ',
       'text2': 'White Rust',
       'color': const Color(0xFFFCDCA6),
     },
     {
-      'image': 'assets/v10.png',
+      'image': 'assets/Details/v10.png',
       'text1': 'Diseases',
       'text2': 'Powdery mildew',
       'color': const Color(0xFFFCDCA6),
     },
     {
-      'image': 'assets/v11.png',
+      'image': 'assets/Details/v11.png',
       'text1': 'Fertilizers ',
       'text2': 'Thiocyclam',
       'color': const Color(0xFFF6A33E),
     },
     {
-      'image': 'assets/v12.png',
+      'image': 'assets/Details/v12.png',
       'text1': 'Fertilizers',
       'text2': 'Thiamethoxam ',
       'color': const Color(0xFFF6A33E),
     },
     {
-      'image': 'assets/v13.png',
+      'image': 'assets/Details/v13.png',
       'text1': 'Fertilizers',
       'text2': 'Imidacloprid',
       'color': const Color(0xFFF6A33E),
@@ -124,7 +124,7 @@ class Cabbage extends StatelessWidget {
                 const SizedBox(
                     width: 10), // Adding space between text and image
                 Image.asset(
-                  'assets/cabbage.png',
+                  'assets/Details/cabbage.png',
                   width: 100,
                   height: 100,
                 ),
