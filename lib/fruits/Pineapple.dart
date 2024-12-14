@@ -8,128 +8,122 @@ class Pineapple extends StatelessWidget {
       'image': 'assets/Details/image_05.jpg',
       'text1': 'Spacing ',
       'text2': '36 inches apart',
-      'color': const Color(0xFFD9F5C5),
+     'color': Colors.white,
     },
     {
       'image': 'assets/Details/v2.png',
       'text1': 'Temperature',
       'text2': '24-32 C',
-      'color': const Color(0xFFD9F5C5),
+      'color': Colors.white,
     },
     {
       'image': 'assets/Details/v3.png',
       'text1': 'Germination ',
       'text2': '6 months',
-      'color': const Color(0xFFD9F5C5),
+     'color': Colors.white,
     },
     {
       'image': 'assets/Details/v4.png',
       'text1': 'Sprout to Harvest ',
       'text2': '18-32 months',
-      'color': const Color(0xFFD0EC94),
+      'color': Colors.white,
     },
     {
       'image': 'assets/Details/phrange.jpg',
       'text1': 'Soil PH Range',
       'text2': '5.5-6',
-      'color': const Color(0xFFD0EC94),
+      'color': Colors.white,
     },
     {
       'image': 'assets/Details/v7.png',
       'text1': 'Water',
       'text2': ' 1 in/week',
-      'color': const Color(0xFFD0EC94),
+      'color': Colors.white,
     },
     {
       'image': 'assets/Details/whiterot.jpeg',
       'text1': 'Diseases',
       'text2': 'Yeasty rot',
-      'color': const Color(0xFFFCDCA6),
+      'color': Colors.white,
     },
     {
       'image': 'assets/Details/rootrot.jpeg',
       'text1': 'Diseases ',
       'text2': 'Base rot',
-      'color': const Color(0xFFFCDCA6),
+      'color': Colors.white,
     },
     {
       'image': 'assets/Details/waterB.jpeg',
       'text1': 'Diseases',
       'text2': 'Water blister',
-      'color': const Color(0xFFFCDCA6),
+      'color': Colors.white,
     },
     {
       'image': 'assets/Details/compost.jpeg',
       'text1': 'Manure',
       'text2': 'Organic manure',
-      'color': const Color(0xFFF6A33E),
+      'color': Colors.white,
     },
     {
       'image': 'assets/Details/nitpo.jpeg',
       'text1': 'Fertilizers',
       'text2': 'Chemical Fertilizers',
-      'color': const Color(0xFFF6A33E),
+      'color': Colors.white,
     },
   ];
 
-  @override
+ 
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(color: Colors.white),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(25, 1, 50, 0.1),
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/logo.png',
-                  alignment: Alignment.topLeft,
-                ),
-              ],
-            ),
-          ),
+        
         ),
-      ),
-      body: Column(
-        children: [
+          body: Column(children:[
           Container(
-            color: const Color(0xFF66B68B),
-            height: 70,
-            width: 600,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Pineapple',
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+            height: 80,
+            color: Color.fromRGBO(36, 77, 55, 1),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+                    const SizedBox(width: 10),
+                    const Text(
+                      'Pineapple',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Image.asset('assets/Details/pa.png', width: 70, height: 70),
+                  ],
                 ),
-                const SizedBox(width: 10),
-                Image.asset(
-                  'assets/Details/pa.png',
-                  width: 100,
-                  height: 100,
-                ),
-                const SizedBox(height: 20.0),
-              ],
+              ),
             ),
           ),
           Expanded(
-            child: GridView.count(
-              crossAxisCount: 3,
-              children: List.generate(gridData.length, (index) {
-                return GridItem(
-                  image: gridData[index]['image'],
-                  text1: gridData[index]['text1'],
-                  text2: gridData[index]['text2'],
-                  color: gridData[index]['color'],
-                );
-              }),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: 1.2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                children: List.generate(gridData.length, (index) {
+                  return GridItem(
+                    image: gridData[index]['image'],
+                    text1: gridData[index]['text1'],
+                    text2: gridData[index]['text2'],
+                    color: gridData[index]['color'],
+                  );
+                }),
+              ),
             ),
           ),
         ],
@@ -155,54 +149,51 @@ class GridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(8.0),
-      width: 40,
-      height: 40,
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black.withOpacity(0.1),
             spreadRadius: 2,
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
-          BoxShadow(
-            color: Colors.white.withOpacity(0.5),
-            spreadRadius: -2,
-            blurRadius: 4,
-            offset: const Offset(0, -2),
-          ),
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            text1,
-            style: const TextStyle(
-              fontSize: 11,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              image,
+              width: 60,
+              height: 60,
+              alignment: Alignment.center,
             ),
-          ),
-          Text(
-            text2,
-            style: const TextStyle(
-              fontSize: 10,
-              color: Colors.black,
+            const SizedBox(height: 8),
+            Text(
+              text1,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
-          ),
-          const SizedBox(height: 5),
-          Image.asset(
-            image,
-            width: 60,
-            height: 60,
-            alignment: Alignment.center,
-          ),
-        ],
+            const SizedBox(height: 4),
+            Text(
+              text2,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 10,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
